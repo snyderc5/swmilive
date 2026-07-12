@@ -1,0 +1,4378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Southwest Michigan Live Music Calendar</title>
+  <meta name="description" content="Live music, local places, good times across Southwest Michigan — a clickable calendar of bands and venues.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Southwest Michigan Live Music Calendar">
+  <meta property="og:description" content="Live music, local places, good times across Southwest Michigan.">
+  <meta property="og:image" content="https://swmilive.com/logo.png">
+  <meta property="og:image:alt" content="SW Michigan Live Music logo — beach, sun, wave, and treble clef with 'Live music. Local places. Good times.'">
+  <meta property="og:url" content="https://swmilive.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Southwest Michigan Live Music Calendar">
+  <meta name="twitter:description" content="Live music, local places, good times across Southwest Michigan.">
+  <meta name="twitter:image" content="https://swmilive.com/logo.png">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #0f2433;
+      --cp-bg-elevated: #102b3d;
+      --cp-surface: #132f43;
+      --cp-surface-soft: #17384f;
+      --cp-border: #2b5268;
+      --cp-border-strong: #4f768a;
+      --cp-text: #e4edf2;
+      --cp-text-muted: #a8bfcb;
+      --cp-text-soft: #c0d2dc;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(15, 36, 51, 0.88);
+      --cp-panel: rgba(19, 47, 67, 0.76);
+      --cp-panel-strong: rgba(16, 43, 61, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, color-mix(in srgb, var(--cp-success) 24%, transparent), var(--cp-bg) 34rem),
+        radial-gradient(circle at 86% 8%, color-mix(in srgb, var(--cp-link) 22%, transparent), transparent 34rem),
+        radial-gradient(circle at 72% 92%, color-mix(in srgb, var(--cp-warning) 24%, transparent), transparent 32rem),
+        linear-gradient(115deg, transparent 0 58%, color-mix(in srgb, var(--cp-warning) 10%, transparent) 58% 72%, transparent 72%),
+        linear-gradient(180deg, var(--cp-bg-elevated), var(--cp-bg));
+      color: var(--cp-text);
+      font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    a {
+      color: var(--cp-link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .hero {
+      background: transparent;
+      border: 1px solid rgba(20, 53, 92, 0.22);
+      border-radius: 24px;
+      box-shadow:
+        0 24px 48px -18px rgba(20, 53, 92, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      color: #f8f2e2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 24px;
+      overflow: hidden;
+      padding: 30px 36px 48px;
+      position: relative;
+      isolation: isolate;
+      min-height: 260px;
+    }
+
+    .hero-scene {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+    }
+
+    .hero-lead {
+      align-items: center;
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-logo {
+      background: #ffffff;
+      border: 4px solid rgba(255, 255, 255, 0.85);
+      border-radius: 50%;
+      box-shadow:
+        0 18px 32px -12px rgba(20, 53, 92, 0.55),
+        0 0 0 1px rgba(20, 53, 92, 0.15);
+      height: clamp(110px, 15vw, 190px);
+      width: clamp(110px, 15vw, 190px);
+    }
+
+    .eyebrow {
+      color: #14355c;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      border-radius: 999px;
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      margin: 0 0 14px;
+      padding: 5px 12px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      color: #14355c;
+      font-size: clamp(1.2rem, 3vw, 2.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+
+    .subhead {
+      color: rgba(20, 53, 92, 0.82);
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.55;
+      margin: 16px 0 0;
+      max-width: 760px;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(20, 53, 92, 0.18);
+      border-radius: 14px;
+      box-shadow:
+        0 10px 20px -10px rgba(20, 53, 92, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+      min-width: 180px;
+      padding: 12px 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-stat {
+      display: grid;
+      gap: 2px;
+      margin-bottom: 8px;
+    }
+
+    .hero-stat:last-child {
+      margin-bottom: 0;
+    }
+
+    .stat-number {
+      color: #14355c;
+      font-size: 1.7rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-label {
+      color: #4a7c3a;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .toolbar {
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--cp-panel-strong) 88%, var(--cp-link)), color-mix(in srgb, var(--cp-panel-strong) 88%, var(--cp-warning))),
+        color-mix(in srgb, var(--cp-panel-strong) 92%, var(--cp-success));
+      border: 1px solid color-mix(in srgb, var(--cp-success) 24%, var(--cp-border));
+      border-radius: 16px;
+      box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+      display: grid;
+      gap: 16px;
+      grid-template-columns: minmax(220px, 1fr) repeat(2, minmax(180px, 220px)) auto;
+      padding: 16px;
+      position: sticky;
+      top: 12px;
+      z-index: 3;
+    }
+
+    .control {
+      display: grid;
+      gap: 6px;
+    }
+
+    label {
+      color: var(--cp-text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    input,
+    select {
+      background: var(--cp-surface);
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      color: var(--cp-text);
+      min-height: 42px;
+      padding: 9px 12px;
+      width: 100%;
+    }
+
+    input:focus,
+    select:focus,
+    button:focus-visible {
+      outline: 2px solid var(--cp-accent);
+      outline-offset: 2px;
+    }
+
+    .view-toggle {
+      align-items: end;
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      background: var(--cp-surface);
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      color: var(--cp-text);
+      cursor: pointer;
+      font-weight: 700;
+      min-height: 42px;
+      padding: 9px 14px;
+    }
+
+    .btn:hover {
+      border-color: var(--cp-border-strong);
+    }
+
+    .btn.active,
+    .btn.primary {
+      background: var(--cp-success);
+      border-color: var(--cp-success);
+      color: var(--cp-accent-fg);
+    }
+
+    .content-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      margin-top: 24px;
+    }
+
+    .panel {
+      background: color-mix(in srgb, var(--cp-panel) 96%, var(--cp-success));
+      border: 1px solid color-mix(in srgb, var(--cp-success) 18%, var(--cp-border));
+      border-radius: 16px;
+      box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      align-items: center;
+      border-bottom: 1px solid var(--cp-border);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+    }
+
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .muted {
+      color: var(--cp-text-muted);
+    }
+
+    .calendar {
+      display: grid;
+      gap: 24px;
+      padding: 20px;
+    }
+
+    .month {
+      background: var(--cp-surface);
+      border: 1px solid color-mix(in srgb, var(--cp-success) 18%, var(--cp-border));
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .month-title {
+      align-items: center;
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--cp-link) 18%, var(--cp-surface-soft)), color-mix(in srgb, var(--cp-success) 16%, var(--cp-surface-soft)) 48%, color-mix(in srgb, var(--cp-warning) 22%, var(--cp-surface-soft)));
+      border-bottom: 1px solid color-mix(in srgb, var(--cp-success) 28%, var(--cp-border));
+      display: grid;
+      gap: 6px;
+      justify-items: center;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .month-title h2 {
+      color: var(--cp-success);
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      letter-spacing: -0.05em;
+      line-height: 0.95;
+      margin: 0;
+    }
+
+    .month-count {
+      color: var(--cp-text-muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .weekdays,
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .weekday {
+      border-bottom: 1px solid var(--cp-border);
+      color: var(--cp-text-muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 10px;
+      text-transform: uppercase;
+    }
+
+    .day {
+      border-bottom: 1px solid var(--cp-border);
+      border-right: 1px solid var(--cp-border);
+      min-height: 148px;
+      padding: 8px;
+    }
+
+    .day:nth-child(7n) {
+      border-right: 0;
+    }
+
+    .days .day:nth-last-child(-n + 7) {
+      border-bottom: 0;
+    }
+
+    .day.empty {
+      background: var(--cp-surface-soft);
+    }
+
+    .date-num {
+      align-items: center;
+      color: var(--cp-text-muted);
+      display: flex;
+      font-size: 0.8rem;
+      font-weight: 800;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .today-mark {
+      background: var(--cp-accent-soft);
+      border-radius: 999px;
+      color: var(--cp-accent);
+      font-size: 0.68rem;
+      padding: 2px 7px;
+    }
+
+    .event-chip {
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--cp-link) 7%, transparent), color-mix(in srgb, var(--cp-warning) 8%, transparent)),
+        color-mix(in srgb, var(--cp-success) 10%, var(--cp-surface));
+      border: 1px solid var(--cp-border);
+      border-left: 4px solid var(--cp-success);
+      border-radius: 0.625rem;
+      color: var(--cp-text);
+      cursor: pointer;
+      display: grid;
+      gap: 3px;
+      margin-top: 6px;
+      padding: 7px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .event-chip:hover {
+      background: color-mix(in srgb, var(--cp-success) 18%, var(--cp-surface));
+      border-color: color-mix(in srgb, var(--cp-success) 55%, var(--cp-border-strong));
+    }
+
+    .chip-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .chip-meta {
+      color: var(--cp-text-muted);
+      font-size: 0.72rem;
+      line-height: 1.25;
+    }
+
+    .list-view {
+      display: none;
+      padding: 20px;
+    }
+
+    .event-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .event-card {
+      background: var(--cp-surface);
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 92px minmax(0, 1fr) auto;
+      padding: 16px;
+    }
+
+    .date-block {
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--cp-link) 12%, var(--cp-surface-soft)), color-mix(in srgb, var(--cp-warning) 14%, var(--cp-surface-soft)));
+      border: 1px solid color-mix(in srgb, var(--cp-success) 28%, var(--cp-border));
+      border-radius: 0.625rem;
+      display: grid;
+      place-items: center;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .date-block .month-abbr {
+      color: var(--cp-success);
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .date-block .day-num {
+      font-size: 1.8rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .event-card h3 {
+      font-size: 1.05rem;
+      margin: 0 0 6px;
+    }
+
+    .meta-row {
+      color: var(--cp-text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 0.88rem;
+      gap: 8px;
+    }
+
+    .location-strong {
+      color: var(--cp-text);
+      font-weight: 900;
+    }
+
+    .tag {
+      background: color-mix(in srgb, var(--cp-success) 12%, var(--cp-surface));
+      border: 1px solid color-mix(in srgb, var(--cp-success) 26%, var(--cp-border));
+      border-radius: 999px;
+      color: var(--cp-success);
+      display: inline-flex;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 9px;
+    }
+
+    .event-actions {
+      align-items: start;
+      display: flex;
+      gap: 8px;
+    }
+
+    aside {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .side-card {
+      background: var(--cp-panel-strong);
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+      padding: 18px;
+    }
+
+    .side-card h2 {
+      font-size: 1rem;
+      margin: 0 0 12px;
+    }
+
+    .source-list,
+    .upcoming-list,
+    .coverage-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .source-item,
+    .upcoming-item,
+    .coverage-item {
+      border-bottom: 1px solid var(--cp-border);
+      display: grid;
+      gap: 3px;
+      list-style: none;
+      padding-bottom: 10px;
+    }
+
+    .source-item:last-child,
+    .upcoming-item:last-child,
+    .coverage-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .source-name,
+    .upcoming-name,
+    .coverage-name {
+      font-weight: 800;
+    }
+
+    .small {
+      color: var(--cp-text-muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .status {
+      border-radius: 999px;
+      display: inline-flex;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 3px 8px;
+      width: fit-content;
+    }
+
+    .status.loaded {
+      background: var(--cp-accent-soft);
+      color: var(--cp-accent);
+    }
+
+    .status.limited {
+      background: var(--cp-surface-soft);
+      color: var(--cp-text-muted);
+    }
+
+    .empty-state {
+      background: var(--cp-surface);
+      border: 1px dashed var(--cp-border-strong);
+      border-radius: 16px;
+      color: var(--cp-text-muted);
+      padding: 32px;
+      text-align: center;
+    }
+
+    .modal-backdrop {
+      align-items: center;
+      background: var(--cp-overlay);
+      display: none;
+      inset: 0;
+      justify-content: center;
+      padding: 24px;
+      position: fixed;
+      z-index: 10;
+    }
+
+    .modal {
+      background: var(--cp-panel-strong);
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      box-shadow: var(--cp-shadow);
+      max-height: min(760px, 92vh);
+      max-width: 720px;
+      overflow: auto;
+      padding: 24px;
+      width: 100%;
+    }
+
+    .modal-header {
+      align-items: start;
+      display: flex;
+      gap: 16px;
+      justify-content: space-between;
+    }
+
+    .modal h2 {
+      font-size: 1.7rem;
+      margin: 0 0 8px;
+    }
+
+    .modal-detail-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin: 18px 0;
+    }
+
+    .detail-box {
+      background: var(--cp-surface);
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      padding: 12px;
+    }
+
+    .detail-label {
+      color: var(--cp-text-muted);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .detail-value {
+      font-weight: 800;
+    }
+
+    .modal p {
+      color: var(--cp-text-muted);
+      line-height: 1.55;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .footer-note {
+      color: var(--cp-text-muted);
+      font-size: 0.82rem;
+      margin: 24px 0 0;
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .hero,
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 32px 28px 88px;
+      }
+
+      .hero-card {
+        justify-self: stretch;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        padding: 18px;
+      }
+
+      .hero {
+        padding: 28px 22px 82px;
+      }
+
+      .hero-lead {
+        gap: 20px;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .subhead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .toolbar {
+        position: static;
+        grid-template-columns: 1fr;
+      }
+
+      .view-toggle {
+        align-items: stretch;
+      }
+
+      .view-toggle .btn {
+        flex: 1;
+      }
+
+      .weekdays {
+        display: none;
+      }
+
+      .days {
+        grid-template-columns: 1fr;
+      }
+
+      .day,
+      .day:nth-child(7n),
+      .days .day:nth-last-child(-n + 7) {
+        border-right: 0;
+        border-bottom: 1px solid var(--cp-border);
+        min-height: auto;
+      }
+
+      .day.empty {
+        display: none;
+      }
+
+      .day.past-day {
+        display: none;
+      }
+
+      .event-card {
+        grid-template-columns: 1fr;
+      }
+
+      .event-actions {
+        align-items: stretch;
+      }
+
+      .event-actions .btn {
+        width: 100%;
+      }
+
+      .modal-detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <svg class="hero-scene" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#a5b6d8"/>
+            <stop offset="0.18" stop-color="#c1a3cf"/>
+            <stop offset="0.36" stop-color="#eaa9cc"/>
+            <stop offset="0.55" stop-color="#ffabc0"/>
+            <stop offset="0.78" stop-color="#ffc9a0"/>
+            <stop offset="1" stop-color="#ffe4b0"/>
+          </linearGradient>
+          <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#c9d3e2"/>
+            <stop offset="0.25" stop-color="#94aecc"/>
+            <stop offset="0.7" stop-color="#6089b4"/>
+            <stop offset="1" stop-color="#7ba3c8"/>
+          </linearGradient>
+          <radialGradient id="sun" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#fff6d1"/>
+            <stop offset="0.6" stop-color="#ffc06f"/>
+            <stop offset="1" stop-color="#ff7d5a"/>
+          </radialGradient>
+          <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fbe2ad"/>
+            <stop offset="1" stop-color="#e6c47a"/>
+          </linearGradient>
+          </defs>
+
+        <!-- Sky -->
+        <rect width="1440" height="370" fill="url(#sky)"/>
+
+        <!-- Cloud 1: WIDE + FLAT, low in sky, big and spread -->
+        <g stroke="#c98cad" stroke-width="1.6" stroke-linejoin="round" fill="#fff2f7" opacity=".92">
+          <path d="M 60,110 Q 40,110 44,96 Q 36,80 60,80 Q 66,58 96,72 Q 118,50 148,72 Q 175,58 190,82 Q 220,80 226,102 Q 250,102 252,120 Q 258,128 232,128 L 76,128 Q 60,128 60,110 Z"/>
+        </g>
+
+        <!-- Cloud 2: SMALL round puff, isolated -->
+        <g stroke="#c98cad" stroke-width="1.6" stroke-linejoin="round" fill="#ffe4ee" opacity=".9">
+          <path d="M 452,60 Q 442,60 444,50 Q 438,38 452,38 Q 456,26 470,32 Q 480,22 490,34 Q 502,34 502,46 Q 510,50 500,56 Q 500,64 486,62 L 464,62 Q 452,62 452,60 Z"/>
+        </g>
+
+        <!-- Cloud 3: BIG FLUFFY / TALL, multiple stacked bumps -->
+        <g stroke="#c98cad" stroke-width="1.6" stroke-linejoin="round" fill="#fff2f7" opacity=".95">
+          <path d="M 640,80 Q 622,80 626,64 Q 618,48 640,50 Q 646,26 674,38 Q 692,18 712,38 Q 728,26 736,50 Q 758,46 758,68 Q 774,72 766,84 Q 770,96 748,96 L 660,96 Q 640,96 640,80 Z"/>
+        </g>
+
+        <!-- Cloud 4: OVAL stretched thin, high in the sky -->
+        <g stroke="#c98cad" stroke-width="1.5" stroke-linejoin="round" fill="#ffe4ee" opacity=".9">
+          <path d="M 1000,32 Q 990,32 990,24 Q 986,14 1002,14 Q 1010,4 1024,12 Q 1042,6 1054,16 Q 1074,10 1086,20 Q 1106,16 1116,26 Q 1136,26 1140,36 Q 1148,42 1132,44 L 1014,44 Q 1000,44 1000,32 Z"/>
+        </g>
+
+        <!-- Cloud 5: TINY wispy cloud near horizon-right -->
+        <g stroke="#c98cad" stroke-width="1.4" stroke-linejoin="round" fill="#fff2f7" opacity=".85">
+          <path d="M 1300,120 Q 1294,120 1294,112 Q 1290,102 1302,102 Q 1306,92 1318,98 Q 1328,90 1336,100 Q 1348,100 1348,110 Q 1354,114 1344,118 Q 1344,122 1332,122 L 1310,122 Q 1300,122 1300,120 Z"/>
+        </g>
+
+        <!-- Sun outer glow -->
+        <circle cx="902" cy="180" r="86" fill="#ffe4a0" opacity=".25"/>
+        <circle cx="902" cy="180" r="74" fill="#ffd58a" opacity=".35"/>
+
+        <!-- Sunburst rays -->
+        <g transform="translate(902 180)" fill="#ffc478" stroke="#c26b2c" stroke-width="1.5" stroke-linejoin="round" opacity=".9">
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(0)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(30)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(60)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(90)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(120)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(150)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(180)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(210)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(240)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(270)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(300)"/>
+          <polygon points="0,-93 -7,-66 7,-66" transform="rotate(330)"/>
+        </g>
+
+        <!-- Sun body -->
+        <circle cx="902" cy="180" r="59" fill="url(#sun)" stroke="#c74a2d" stroke-width="2.5"/>
+
+        <!-- Lake (lightened bottom to avoid dark line at beach) -->
+        <rect y="240" width="1440" height="130" fill="url(#lake)"/>
+
+        <!-- Distant shore silhouette -->
+        <path d="M0,244 Q220,236 480,242 T900,238 T1440,244 L1440,250 L0,250 Z" fill="#3f4d7d" opacity=".55"/>
+
+        <!-- Sun reflection on water -->
+        <g opacity=".85">
+          <ellipse cx="902" cy="252" rx="61" ry="4" fill="#ffcf8a"/>
+          <ellipse cx="902" cy="266" rx="48" ry="3" fill="#ff9d78"/>
+          <ellipse cx="902" cy="280" rx="30" ry="2.5" fill="#ff7d5a"/>
+        </g>
+
+        <!-- Cartoon wave ripples -->
+        <g fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity=".55">
+          <path d="M80,290 q10,-6 20,0 t20,0 t20,0"/>
+          <path d="M240,308 q10,-6 20,0 t20,0"/>
+          <path d="M420,300 q10,-6 20,0 t20,0 t20,0"/>
+          <path d="M580,320 q10,-6 20,0 t20,0"/>
+          <path d="M900,318 q10,-6 20,0 t20,0"/>
+          <path d="M1030,335 q10,-6 20,0 t20,0"/>
+          <path d="M180,340 q10,-6 20,0 t20,0"/>
+        </g>
+
+        <!-- Pier (short, on right) -->
+        <rect x="1040" y="280" width="400" height="12" fill="#c9beac" stroke="#4a3c2c" stroke-width="2"/>
+        <rect x="1040" y="280" width="400" height="3.5" fill="#eae0c6"/>
+        <line x1="1040" y1="266" x2="1440" y2="266" stroke="#2a2318" stroke-width="2"/>
+        <line x1="1040" y1="273" x2="1440" y2="273" stroke="#2a2318" stroke-width="1.2"/>
+        <g stroke="#2a2318" stroke-width="1.8" stroke-linecap="round">
+          <line x1="1060" y1="266" x2="1060" y2="280"/>
+          <line x1="1130" y1="266" x2="1130" y2="280"/>
+          <line x1="1200" y1="266" x2="1200" y2="280"/>
+          <line x1="1360" y1="266" x2="1360" y2="280"/>
+          <line x1="1420" y1="266" x2="1420" y2="280"/>
+        </g>
+        <g stroke="#4a3c2c" stroke-width="0.8" opacity=".5">
+          <line x1="1100" y1="280" x2="1100" y2="292"/>
+          <line x1="1180" y1="280" x2="1180" y2="292"/>
+          <line x1="1260" y1="280" x2="1260" y2="292"/>
+          <line x1="1340" y1="280" x2="1340" y2="292"/>
+        </g>
+        <g fill="#7a6e5c" stroke="#3a332b" stroke-width="1.5">
+          <rect x="1060" y="292" width="12" height="66"/>
+          <rect x="1200" y="292" width="12" height="66"/>
+          <rect x="1340" y="292" width="12" height="66"/>
+          <rect x="1420" y="292" width="12" height="66"/>
+        </g>
+
+        <!-- St. Joseph Lighthouse — refined to match reference photo -->
+        <g transform="translate(1090 280)">
+          <!-- Base building white walls -->
+          <rect x="0" y="-55" width="90" height="55" fill="#f7f4e9" stroke="#2a2318" stroke-width="2"/>
+          <!-- Windows -->
+          <rect x="14" y="-40" width="14" height="18" fill="#3a556f" stroke="#2a2318" stroke-width="1.5"/>
+          <line x1="21" y1="-40" x2="21" y2="-22" stroke="#2a2318" stroke-width="1"/>
+          <line x1="14" y1="-31" x2="28" y2="-31" stroke="#2a2318" stroke-width="1"/>
+          <rect x="62" y="-40" width="14" height="18" fill="#3a556f" stroke="#2a2318" stroke-width="1.5"/>
+          <line x1="69" y1="-40" x2="69" y2="-22" stroke="#2a2318" stroke-width="1"/>
+          <line x1="62" y1="-31" x2="76" y2="-31" stroke="#2a2318" stroke-width="1"/>
+          <!-- Doorway -->
+          <rect x="36" y="-20" width="18" height="20" fill="#3a556f" stroke="#2a2318" stroke-width="1.5"/>
+          <!-- Red pyramidal roof (shorter, less overhang) -->
+          <polygon points="-3,-55 93,-55 60,-73 30,-73" fill="#b3311f" stroke="#2a2318" stroke-width="2"/>
+          <polygon points="-3,-55 30,-73 45,-73 45,-55" fill="#8f2919" stroke="#2a2318" stroke-width="2"/>
+          <!-- Transition -->
+          <rect x="28" y="-78" width="34" height="5" fill="#f7f4e9" stroke="#2a2318" stroke-width="2"/>
+          <!-- Cylindrical tower -->
+          <rect x="30" y="-116" width="30" height="38" fill="#f7f4e9" stroke="#2a2318" stroke-width="2"/>
+          <line x1="38" y1="-116" x2="38" y2="-78" stroke="#d8d1bd" stroke-width="0.6"/>
+          <line x1="52" y1="-116" x2="52" y2="-78" stroke="#d8d1bd" stroke-width="0.6"/>
+          <!-- Porthole -->
+          <circle cx="45" cy="-100" r="4" fill="#3a556f" stroke="#2a2318" stroke-width="1.5"/>
+          <!-- Small window -->
+          <rect x="41" y="-86" width="8" height="6" fill="#3a556f" stroke="#2a2318" stroke-width="1"/>
+          <!-- Gallery deck -->
+          <rect x="22" y="-122" width="46" height="6" fill="#1a1a1a" stroke="#2a2318" stroke-width="1.5"/>
+          <!-- Railing pickets -->
+          <g stroke="#1a1a1a" stroke-width="1">
+            <line x1="26" y1="-116" x2="26" y2="-122"/>
+            <line x1="32" y1="-116" x2="32" y2="-122"/>
+            <line x1="38" y1="-116" x2="38" y2="-122"/>
+            <line x1="44" y1="-116" x2="44" y2="-122"/>
+            <line x1="50" y1="-116" x2="50" y2="-122"/>
+            <line x1="56" y1="-116" x2="56" y2="-122"/>
+            <line x1="62" y1="-116" x2="62" y2="-122"/>
+          </g>
+          <!-- Octagonal lantern room -->
+          <polygon points="30,-122 30,-136 36,-142 54,-142 60,-136 60,-122" fill="#ffe97a" stroke="#2a2318" stroke-width="2"/>
+          <line x1="36" y1="-142" x2="36" y2="-122" stroke="#2a2318" stroke-width="1.2"/>
+          <line x1="45" y1="-142" x2="45" y2="-122" stroke="#2a2318" stroke-width="1.2"/>
+          <line x1="54" y1="-142" x2="54" y2="-122" stroke="#2a2318" stroke-width="1.2"/>
+          <line x1="30" y1="-132" x2="60" y2="-132" stroke="#2a2318" stroke-width="1"/>
+          <!-- Base ring beneath dome -->
+          <rect x="28" y="-144" width="34" height="3" fill="#1a1a1a" stroke="#2a2318" stroke-width="1"/>
+          <!-- Triangular/pointed dome cap -->
+          <polygon points="28,-144 45,-162 62,-144" fill="#1a1a1a" stroke="#2a2318" stroke-width="1.5"/>
+          <!-- Vent stack rising from dome peak -->
+          <rect x="43" y="-167" width="4" height="5" fill="#1a1a1a" stroke="#2a2318" stroke-width="1"/>
+          <!-- Ball finial resting on stack -->
+          <circle cx="45" cy="-170" r="2.5" fill="#1a1a1a" stroke="#2a2318" stroke-width="1"/>
+        </g>
+
+        <!-- Cartoon seagulls -->
+        <g stroke="#1a1a2f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M270,102 C 275,94 279,94 284,100 C 289,94 293,94 298,102"/>
+          <path d="M495,80 C 499,74 502,74 505,79 C 508,74 511,74 515,80"/>
+          <path d="M600,120 C 607,110 612,110 618,118 C 624,110 629,110 636,120"/>
+          <path d="M1195,148 C 1200,141 1204,141 1208,147 C 1212,141 1216,141 1221,148"/>
+        </g>
+
+        <!-- Sandy beach foreground (raised slightly to blend with water) -->
+        <path d="M0,362 Q400,354 720,362 T1440,362 L1440,420 L0,420 Z" fill="url(#sand)"/>
+        <path d="M0,378 Q300,371 720,378 T1440,378 L1440,420 L0,420 Z" fill="#dcb268" opacity=".55"/>
+
+        <!-- Tide line foam -->
+        <g fill="none" stroke="#ffffff" stroke-width="1.5" opacity=".7" stroke-linecap="round">
+          <path d="M40,362 q30,-4 60,0 t60,0 t60,0 t60,0"/>
+          <path d="M700,360 q30,-4 60,0 t60,0 t60,0"/>
+          <path d="M1160,362 q30,-4 60,0 t60,0"/>
+        </g>
+      </svg>
+      <div class="hero-lead">
+        <img class="hero-logo" src="logo.png" alt="SW Michigan Live Music logo">
+        <div>
+          <p class="eyebrow">Live music · local places · good times</p>
+          <h1 id="page-title">Southwest Michigan Live Music Calendar</h1>
+          <p class="subhead">A curated, clickable calendar of bands and live music events across Southwest Michigan.</p>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="Calendar summary">
+        <div class="hero-stat">
+          <span class="stat-number" id="eventCount">0</span>
+          <span class="stat-label">Music Events</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-number" id="venueCount">0</span>
+          <span class="stat-label">Venues</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="toolbar" aria-label="Calendar filters">
+      <div class="control">
+        <label for="searchInput">Search</label>
+        <input id="searchInput" type="search" placeholder="Band, venue, genre, city...">
+      </div>
+      <div class="control">
+        <label for="venueFilter">Venue</label>
+        <select id="venueFilter"></select>
+      </div>
+      <div class="control">
+        <label for="genreFilter">Genre</label>
+        <select id="genreFilter"></select>
+      </div>
+      <div class="view-toggle" aria-label="View switcher">
+        <button class="btn active" id="calendarBtn" type="button">Calendar</button>
+        <button class="btn" id="listBtn" type="button">List</button>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <section class="panel" aria-label="Events">
+        <div class="panel-header">
+          <div>
+            <p class="panel-title" id="resultsTitle">All upcoming events</p>
+            <div class="small" id="resultsMeta"></div>
+          </div>
+          <button class="btn" id="resetBtn" type="button">Reset filters</button>
+        </div>
+        <div class="calendar" id="calendarView"></div>
+        <div class="list-view" id="listView">
+          <div class="event-list" id="eventList"></div>
+        </div>
+      </section>
+
+      <aside aria-label="Calendar notes">
+        <section class="side-card">
+          <h2>Next up</h2>
+          <ul class="upcoming-list" id="upcomingList"></ul>
+        </section>
+        <section class="side-card">
+          <h2>Genre mix</h2>
+          <div id="genreMix"></div>
+        </section>
+        <section class="side-card">
+          <h2>Source coverage</h2>
+          <ul class="coverage-list" id="coverageList"></ul>
+        </section>
+        <section class="side-card">
+          <h2>Venue source links</h2>
+          <ul class="source-list" id="sourceList"></ul>
+        </section>
+      </aside>
+    </section>
+
+    <p class="footer-note">Event links point back to the venue source pages for final confirmation before attending.</p>
+  </main>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <article class="modal">
+      <div class="modal-header">
+        <div>
+          <span class="tag" id="modalGenre"></span>
+          <h2 id="modalTitle"></h2>
+          <div class="meta-row" id="modalMeta"></div>
+        </div>
+        <button class="btn" id="closeModalBtn" type="button">Close</button>
+      </div>
+      <div class="modal-detail-grid">
+        <div class="detail-box">
+          <div class="detail-label">Venue</div>
+          <div class="detail-value" id="modalVenue"></div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-label">Time</div>
+          <div class="detail-value" id="modalTime"></div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-label">Location</div>
+          <div class="detail-value" id="modalLocation"></div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-label">Source</div>
+          <div class="detail-value" id="modalSource"></div>
+        </div>
+      </div>
+      <p id="modalDescription"></p>
+      <div class="modal-actions">
+        <a class="btn primary" id="modalSourceLink" href="#" target="_blank" rel="noopener">Open venue details</a>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    const sourceCoverage = [
+      {
+        name: "Harbor Arts Music in the Park",
+        status: "Loaded",
+        note: "Full 2026 summer lineup was available with artist bios and genres inferred from venue descriptions."
+      },
+      {
+        name: "Watermark Brewing Co.",
+        status: "Loaded",
+        note: "Live music events visible on the events page were loaded; some times were not exposed in the listing."
+      },
+      {
+        name: "Lake Time Brewing & Spirits",
+        status: "Loaded",
+        note: "Current music calendar exposed a short upcoming list."
+      },
+      {
+        name: "Lemon Creek Winery",
+        status: "Loaded",
+        note: "Live Music Fridays were added from Lemon Creek's events pages."
+      },
+      {
+        name: "Gravity Winery",
+        status: "Loaded",
+        note: "Future live music events were added from Gravity's event calendar."
+      },
+      {
+        name: "12 Corners Vineyards",
+        status: "Loaded",
+        note: "Future July and August Music in the Vineyard events were read from the flyer image."
+      },
+      {
+        name: "Buchanan Common",
+        status: "Loaded",
+        note: "Only The Common Concert Series live-music events were added from the City of Buchanan calendar."
+      },
+      {
+        name: "Chikaming Township Park",
+        status: "Loaded",
+        note: "Only Music in the Park live-music sets were added from the park events and programs page."
+      },
+      {
+        name: "Dablon Winery",
+        status: "Loaded",
+        note: "Live-music events were added from Dablon's event list pages; non-music winery events were skipped."
+      },
+      {
+        name: "Local Pour",
+        status: "Loaded",
+        note: "Only live music and karaoke events were added from Local Pour's events page; wine pairing and painting events were skipped."
+      },
+      {
+        name: "River Saint Joe",
+        status: "Loaded",
+        note: "Only beer-garden live music events were added from River Saint Joe's events list; yoga, dance, and other non-music events were skipped."
+      },
+      {
+        name: "Round Barn",
+        status: "Loaded",
+        note: "Only confirmed music events were added from Round Barn event pages; non-music and TBD pages were skipped."
+      },
+      {
+        name: "The Acorn",
+        status: "Loaded",
+        note: "Full ticket-page lineup from get-tickets was loaded through November, replacing the prior partial Acorn event pull."
+      },
+      {
+        name: "SideYard Sawyer",
+        status: "Loaded",
+        note: "Future July events were read from the event flyer image on the SideYard events page."
+      },
+      {
+        name: "RyeBelles",
+        status: "Loaded",
+        note: "Future July live-music dates were read from the public Instagram schedule image."
+      },
+      {
+        name: "The Livery",
+        status: "Loaded",
+        note: "Future live-music listings were extracted from The Livery's PDF schedule linked from its live-music page."
+      }
+    ];
+
+    const sourceLinks = [
+      ["Harbor Arts Music in the Park", "https://www.harborarts.com/music-in-the-park"],
+      ["Watermark Brewing Co.", "https://watermarkbrewing.com/events"],
+      ["Lake Time Brewing & Spirits", "https://laketimebrewing.com/events-%26-music-calendar"],
+      ["Lemon Creek Winery", "https://lemoncreekwinery.com/events/"],
+      ["Gravity Winery", "https://gravitywine.com/events/"],
+      ["12 Corners Vineyards", "https://www.12corners.com/page?pageid=16AEFE63-CD56-40A6-832E-0DCD986E4877"],
+      ["Buchanan Common", "https://www.cityofbuchanan.com/calendar"],
+      ["Chikaming Township Park", "https://www.chikamingtownship.org/park-events-and-programs"],
+      ["Dablon Winery", "https://dablon.com/events/list/"],
+      ["Local Pour", "https://www.localpourmi.com/events"],
+      ["River Saint Joe", "https://www.riversaintjoe.com/-events-calendar"],
+      ["Round Barn Events", "https://roundbarn.com/events/"],
+      ["The Acorn", "https://www.acornlive.org/get-tickets/"],
+      ["SideYard Sawyer", "https://www.sideyardsawyer.com/events"],
+      ["RyeBelles Instagram", "https://www.instagram.com/ryebelles/"],
+      ["The Livery", "https://www.liverybrew.com/live-music"]
+    ];
+
+    const scrapedEvents = [
+      {
+        id: "lake-time-jack-cunningham-2026-07-10",
+        date: "2026-07-10",
+        time: "7:00 PM-10:00 PM ET",
+        artist: "Jack Cunningham",
+        venue: "Lake Time Brewing & Spirits",
+        city: "Bridgman",
+        location: "4242 Lake Street, Bridgman, MI",
+        genre: "Acoustic singer-songwriter",
+        description: "Live music in the tap room at Lake Time Brewing & Spirits.",
+        source: "Lake Time Brewing & Spirits events calendar",
+        url: "https://laketimebrewing.com/events-%26-music-calendar"
+      },
+      {
+        id: "watermark-hendrix-effect-2026-07-10",
+        date: "2026-07-10",
+        time: "See venue details",
+        artist: "Hendrix Effect",
+        venue: "Watermark Brewing Co.",
+        city: "Stevensville",
+        location: "5781 Saint Joseph Avenue, Stevensville, MI",
+        genre: "Blues rock / psychedelic rock",
+        description: "Watermark listed this as a live music event. Genre is inferred from the Hendrix-oriented artist name; confirm final timing on the venue page.",
+        source: "Watermark events page",
+        url: "https://watermarkbrewing.com/events/i5nbzo12bq8t7pf9ikesfw97niond8"
+      },
+      {
+        id: "lake-time-vineyard-chicks-2026-07-11",
+        date: "2026-07-11",
+        time: "1:00 PM-4:00 PM ET",
+        artist: "The Vineyard Chicks",
+        venue: "Lake Time Brewing & Spirits",
+        city: "Bridgman",
+        location: "4242 Lake Street, Bridgman, MI",
+        genre: "Acoustic vocal music",
+        description: "Live music in The Landing event space at Lake Time Brewing & Spirits.",
+        source: "Lake Time Brewing & Spirits events calendar",
+        url: "https://laketimebrewing.com/events-%26-music-calendar"
+      },
+      {
+        id: "watermark-bootstrap-boys-2026-07-11",
+        date: "2026-07-11",
+        time: "See venue details",
+        artist: "The Bootstrap Boys",
+        venue: "Watermark Brewing Co.",
+        city: "Stevensville",
+        location: "5781 Saint Joseph Avenue, Stevensville, MI",
+        genre: "Outlaw country / honky-tonk",
+        description: "Grand Rapids-based band known for classic country storytelling and a working-class, up-north swagger.",
+        source: "Watermark events page",
+        url: "https://watermarkbrewing.com/events/live-music-the-bootstrap-boys"
+      },
+      {
+        id: "harbor-bobby-hunt-2026-07-11",
+        date: "2026-07-11",
+        time: "6:30 PM ET",
+        artist: "Bobby Hunt and the Day Drinkers",
+        venue: "Music in the Park",
+        city: "Three Oaks",
+        location: "Dewey Cannon Park, Three Oaks, MI",
+        genre: "Blues",
+        description: "Local Michigan musicians led by vocalist and guitarist Bobby Hunt, bringing a blues-forward set to the park.",
+        source: "Harbor Arts Music in the Park",
+        url: "https://www.harborarts.com/music-in-the-park"
+      },
+      {
+        id: "watermark-hunter-vincek-2026-07-15",
+        date: "2026-07-15",
+        time: "See venue details",
+        artist: "Hunter Vincek",
+        venue: "Watermark Brewing Co.",
+        city: "Stevensville",
+        location: "5781 Saint Joseph Avenue, Stevensville, MI",
+        genre: "Country / Americana / rock",
+        description: "A Stevensville-based musician performing an energetic show of country, Americana, and rock hits.",
+        source: "Watermark events page",
+        url: "https://watermarkbrewing.com/events/live-music-hunter-vincek-2-dedr3"
+      },
+      {
+        id: "watermark-st-joe-jack-2026-07-17",
+        date: "2026-07-17",
+        time: "See venue details",
+        artist: "St. Joe Jack",
+        venue: "Watermark Brewing Co.",
+        city: "Stevensville",
+        location: "5781 Saint Joseph Avenue, Stevensville, MI",
+        genre: "Acoustic",
+        description: "One-man-band blending soulful grooves, Grateful Dead-style improvisation, bluegrass roots, looping, beat-boxing, percussion, and guitar textures.",
+        source: "Watermark events page",
+        url: "https://watermarkbrewing.com/events/e46xe7thln4x8xr4fp3lgx68m9yp3p-y9t3s-p9k4a"
+      },
+      {
+        id: "harbor-pt-cruisers-2026-07-18",
+        date: "2026-07-18",
+        time: "6:30 PM ET",
+        artist: "PT and The Cruisers",
+        venue: "Music in the Park",
+        city: "Three Oaks",
+        location: "Dewey Cannon Park, Three Oaks, MI",
+        genre: "Pop rock",
+        description: "A Midwest pop-rock band built for dancing and a lively outdoor concert set.",
+        source: "Harbor Arts Music in the Park",
+        url: "https://www.harborarts.com/music-in-the-park"
+      },
+      {
+        id: "watermark-anniversary-2026-07-18",
+        date: "2026-07-18",
+        time: "11:00 AM-10:30 PM ET",
+        artist: "Pablo's Great Revenge, Tuesday Atlas, Chan Fuze, DJ Danger Dave",
+        venue: "Watermark Brewing Co.",
+        city: "Stevensville",
+        location: "5781 Saint Joseph Avenue, Stevensville, MI",
+        genre: "Festival lineup / DJ",
+        description: "Watermark's 10th Anniversary Party includes live sets from Pablo's Great Revenge, Tuesday Atlas, and Chan Fuze, followed by DJ Danger Dave during the foam party.",
+        source: "Watermark events page",
+        url: "https://watermarkbrewing.com/events/91cbzw7rwptqw5vfvgfk1n0b0g5m6t"
+      },
+      {
+        id: "harbor-quite-frank-lee-2026-07-25",
+        date: "2026-07-25",
+        time: "6:30 PM ET",
+        artist: "Quite Frank Lee",
+        venue: "Music in the Park",
+        city: "Three Oaks",
+        location: "Dewey Cannon Park, Three Oaks, MI",
+        genre: "Soulful rock / pop",
+        description: "A Michigan band with dynamic vocals, guitar-driven arrangements, and a diverse palette of soulful melodies and high-energy performance.",
+        source: "Harbor Arts Music in the Park",
+        url: "https://www.harborarts.com/music-in-the-park"
+      },
+      {
+        id: "watermark-mo-co-2026-07-29",
+        date: "2026-07-29",
+        time: "See venue details",
+        artist: "Mo & Co",
+        venue: "Watermark Brewing Co.",
+        city: "Stevensville",
+        location: "5781 Saint Joseph Avenue, Stevensville, MI",
+        genre: "Acoustic pop / rock",
+        description: "Watermark listed Mo & Co as a live music event. Genre should be confirmed from the event page or artist channels before public launch.",
+        source: "Watermark events page",
+        url: "https://watermarkbrewing.com/events/muphmlkyhk555v3o5mivmzgigumxjq-njrcb-ermdh-xzg9r-9btrb-ps5sp"
+      },
+      {
+        id: "harbor-seth-kalina-2026-08-01",
+        date: "2026-08-01",
+        time: "6:30 PM ET",
+        artist: "Seth Kalina Quartet",
+        venue: "Music in the Park",
+        city: "Three Oaks",
+        location: "Dewey Cannon Park, Three Oaks, MI",
+        genre: "Jazz",
+        description: "Michigan State University jazz musicians presenting blues, swing, bebop, Latin rhythms, and classic jazz favorites.",
+        source: "Harbor Arts Music in the Park",
+        url: "https://www.harborarts.com/music-in-the-park"
+      },
+      {
+        id: "harbor-scamp-band-2026-08-08",
+        date: "2026-08-08",
+        time: "6:30 PM ET",
+        artist: "The Scamp Band",
+        venue: "Music in the Park",
+        city: "Three Oaks",
+        location: "Dewey Cannon Park, Three Oaks, MI",
+        genre: "Reggae / R&B / classic rock",
+        description: "A long-running Chicagoland band mixing reggae, R&B, classic rock, blues, and country.",
+        source: "Harbor Arts Music in the Park",
+        url: "https://www.harborarts.com/music-in-the-park"
+      },
+      {
+        id: "harbor-saraswathi-ranganathan-2026-08-15",
+        date: "2026-08-15",
+        time: "6:30 PM ET",
+        artist: "Saraswathi Ranganathan",
+        venue: "Music in the Park",
+        city: "Three Oaks",
+        location: "Dewey Cannon Park, Three Oaks, MI",
+        genre: "World music / Indian classical",
+        description: "Award-winning Veena artist bringing a world music performance to Music in the Park.",
+        source: "Harbor Arts Music in the Park",
+        url: "https://www.harborarts.com/music-in-the-park"
+      },
+      {
+        id: "harbor-chicken-dolphin-2026-08-22",
+        date: "2026-08-22",
+        time: "6:30 PM ET",
+        artist: "Chicken Dolphin Band",
+        venue: "Music in the Park",
+        city: "Three Oaks",
+        location: "Dewey Cannon Park, Three Oaks, MI",
+        genre: "Reggae / jazz / blues / country / rock",
+        description: "A high-energy band fusing reggae, jazz, blues, country, rock, and a mix of traditional and modern instruments.",
+        source: "Harbor Arts Music in the Park",
+        url: "https://www.harborarts.com/music-in-the-park"
+      },
+      {
+        id: "watermark-jane-oniell-2026-08-28",
+        date: "2026-08-28",
+        time: "See venue details",
+        artist: "Jane O'Niell",
+        venue: "Watermark Brewing Co.",
+        city: "Stevensville",
+        location: "5781 Saint Joseph Avenue, Stevensville, MI",
+        genre: "Americana singer-songwriter",
+        description: "A songwriter shaped by Midwest roots, John Denver, Norah Jones, and Bonnie Raitt influences, described by Watermark as quietly confident Americana.",
+        source: "Watermark events page",
+        url: "https://watermarkbrewing.com/events/live-music-jane-oniell"
+      },
+      {
+        id: "harbor-kennedys-kitchen-2026-08-29",
+        date: "2026-08-29",
+        time: "6:30 PM ET",
+        artist: "Kennedy's Kitchen",
+        venue: "Music in the Park",
+        city: "Three Oaks",
+        location: "Dewey Cannon Park, Three Oaks, MI",
+        genre: "Irish folk / pub songs",
+        description: "Irish pub songs, sing-alongs, original tunes, recitations, and high-energy dance music.",
+        source: "Harbor Arts Music in the Park",
+        url: "https://www.harborarts.com/music-in-the-park"
+      },
+      {
+        id: "harbor-newport-blues-2026-09-05",
+        date: "2026-09-05",
+        time: "6:30 PM ET",
+        artist: "The Newport Blues Project",
+        venue: "Music in the Park",
+        city: "Three Oaks",
+        location: "Dewey Cannon Park, Three Oaks, MI",
+        genre: "Roots blues",
+        description: "Harbor Country musicians Jumpin' Gene Halton, Bill Bielby, and Jeff Sachs close the Music in the Park season with roots blues.",
+        source: "Harbor Arts Music in the Park",
+        url: "https://www.harborarts.com/music-in-the-park"
+      },
+      {
+        id: "watermark-detroit-doors-2026-09-06",
+        date: "2026-09-06",
+        time: "See venue details",
+        artist: "The Detroit Doors",
+        venue: "Watermark Brewing Co.",
+        city: "Stevensville",
+        location: "5781 Saint Joseph Avenue, Stevensville, MI",
+        genre: "Doors tribute / classic rock",
+        description: "High-energy Doors tribute band focused on authentic performances of The Doors catalog.",
+        source: "Watermark events page",
+        url: "https://watermarkbrewing.com/events/live-music-the-detroit-doors-1-d4zbz-rcwtk"
+      },
+    ];
+
+    const acornTicketEvents = [
+      {
+        id: "acorn-chris-knight-chance-stanley-2026-07-10",
+        date: "2026-07-10",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Chris Knight w/ Chance Stanley",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Americana / country",
+        description: "Ticketed Acorn Theatre performance featuring Kentucky songwriter Chris Knight with Chance Stanley.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-backups-midwest-made-2026-07-12",
+        date: "2026-07-12",
+        time: "3:00 PM ET (2:00 PM CT)",
+        artist: "The Backups: Midwest Made",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Midwest music showcase",
+        description: "Midwest Made series performance at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-music-playground-camp-2026-07-13",
+        date: "2026-07-13",
+        time: "9:00 AM ET (8:00 AM CT)",
+        artist: "The Music Playground - A Camp Where Music Meets Imagination",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Music education / camp",
+        description: "Music-focused camp event listed on The Acorn ticketing page.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-soul-rebels-2026-07-16",
+        date: "2026-07-16",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "The Soul Rebels",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Brass / funk / hip-hop",
+        description: "New Orleans brass ensemble known for funk, soul, jazz, hip-hop, and high-energy live shows.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-andy-sydow-christopher-gold-2026-07-17",
+        date: "2026-07-17",
+        time: "7:00 PM ET (6:00 PM CT)",
+        artist: "Andy Sydow v. Christopher Gold - A Songwriter's Round Like No Other",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Songwriter round / Americana",
+        description: "A songwriter round pairing Andy Sydow and Christopher Gold.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-singer-songwriter-finals-2026-07-18",
+        date: "2026-07-18",
+        time: "7:00 PM ET (6:00 PM CT)",
+        artist: "2026 Singer-Songwriter Competition Finals",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Singer-songwriter",
+        description: "Finals event for The Acorn's 2026 singer-songwriter competition.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-shiny-shiny-black-2026-07-19",
+        date: "2026-07-19",
+        time: "3:00 PM ET (2:00 PM CT)",
+        artist: "Shiny Shiny Black: Midwest Made",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Indie folk / rock",
+        description: "Midwest Made series performance by Shiny Shiny Black.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-pettybreakers-2026-07-24",
+        date: "2026-07-24",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "PettyBreakers",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Tom Petty tribute / classic rock",
+        description: "Tom Petty tribute act performing at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-debutants-2026-07-26",
+        date: "2026-07-26",
+        time: "3:00 PM ET (2:00 PM CT)",
+        artist: "Debutants: Midwest Made",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Midwest music showcase",
+        description: "Midwest Made series performance by Debutants.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-chuck-prophet-2026-07-31",
+        date: "2026-07-31",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Chuck Prophet",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Roots rock / Americana",
+        description: "Singer-songwriter and guitarist Chuck Prophet brings roots-rock and Americana to The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-oceans-rat-pack-2026-08-01",
+        date: "2026-08-01",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Ocean's Rat Pack",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Jazz standards / Rat Pack tribute",
+        description: "Rat Pack-style music and classic lounge standards.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-dupont-phillips-sammie-hershock-2026-08-02",
+        date: "2026-08-02",
+        time: "3:00 PM ET (2:00 PM CT)",
+        artist: "DuPont Phillips w/ Sammie Hershock: Midwest Made",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Midwest music showcase",
+        description: "Midwest Made series performance featuring DuPont Phillips with Sammie Hershock.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-tiffany-2026-08-03",
+        date: "2026-08-03",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Tiffany",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Pop",
+        description: "Pop artist Tiffany performs at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-phil-angotti-beatles-2026-08-07",
+        date: "2026-08-07",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Phil Angotti + Friends play The Beatles",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Beatles tribute / classic pop-rock",
+        description: "Phil Angotti and friends perform music by The Beatles.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-chicago-experience-2026-08-08",
+        date: "2026-08-08",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Chicago Experience",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Chicago tribute / horn rock",
+        description: "Tribute to the music of Chicago with horn-driven classic rock.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-lake-effect-jazz-big-band-2026-08-09",
+        date: "2026-08-09",
+        time: "3:00 PM ET (2:00 PM CT)",
+        artist: "Lake Effect Jazz Big Band: Midwest Made",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Big band jazz",
+        description: "Midwest Made series performance by Lake Effect Jazz Big Band.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-chicago-farmer-fieldnotes-2026-08-14",
+        date: "2026-08-14",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Chicago Farmer and The Fieldnotes",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Folk / Americana",
+        description: "Chicago Farmer and The Fieldnotes bring folk and Americana songwriting to The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-iconic-songs-70s-2026-08-15",
+        date: "2026-08-15",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Iconic Songs of the '70s with Swearingen & Kelli",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "1970s pop-rock / folk-rock",
+        description: "Swearingen & Kelli perform iconic songs of the 1970s.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-playhouse-2026-08-16",
+        date: "2026-08-16",
+        time: "7:00 PM ET (6:00 PM CT)",
+        artist: "PlayHouse",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Funk / jazz / rock",
+        description: "A six-piece instrumental group from New Carlisle, Indiana blending horns, keys, bass, drums, percussion, funk, rock, jazz, covers, and original music.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-red-wanting-blue-2026-08-20",
+        date: "2026-08-20",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Red Wanting Blue",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Rock / Americana",
+        description: "Rock and Americana band Red Wanting Blue performs at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-garrison-keillor-tonight-2026-08-21",
+        date: "2026-08-21",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Garrison Keillor Tonight",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Storytelling / music",
+        description: "An evening of storytelling and performance with Garrison Keillor.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-bruce-in-the-usa-2026-08-22",
+        date: "2026-08-22",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Bruce In The USA",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Springsteen tribute / rock",
+        description: "Bruce Springsteen tribute act performing at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-devon-allman-2026-08-27",
+        date: "2026-08-27",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Devon Allman's 20 Years Strong Tour",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Blues rock / Southern rock",
+        description: "Devon Allman brings his 20 Years Strong Tour to The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-shawn-mullins-2026-08-28",
+        date: "2026-08-28",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Shawn Mullins",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Americana / folk rock",
+        description: "American singer-songwriter known for the Grammy-nominated hit 'Lullaby' and contributions to folk-rock and Americana.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-bergamot-album-release-2026-08-29",
+        date: "2026-08-29",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "The Bergamot - Official Album Release Party",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Indie pop / folk",
+        description: "The Bergamot celebrates an official album release at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-swing-for-the-arts-2026-09-01",
+        date: "2026-09-01",
+        time: "11:00 AM ET (10:00 AM CT)",
+        artist: "Acorn Swing for the Arts",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Arts fundraiser",
+        description: "Fundraising event listed on The Acorn ticketing page.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-steve-forbert-2026-09-04",
+        date: "2026-09-04",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Steve Forbert",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Folk rock / singer-songwriter",
+        description: "Singer-songwriter Steve Forbert performs at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-rainbow-girls-2026-09-13",
+        date: "2026-09-13",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Rainbow Girls",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Folk / Americana",
+        description: "Rainbow Girls bring folk and Americana harmonies to The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-kurt-elling-ben-paterson-2026-09-18",
+        date: "2026-09-18",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Wildflowers: Kurt Elling with Ben Paterson",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Jazz",
+        description: "GRAMMY-winning vocalist Kurt Elling performs with pianist Ben Paterson during the School of American Music's 2nd Annual JazzFest.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-sam-jazzfest-2026-09-19",
+        date: "2026-09-19",
+        time: "12:30 PM ET (11:30 AM CT)",
+        artist: "SAM 2nd Annual JazzFest: Saturday Shows at Vickers Theatre",
+        venue: "Vickers Theatre",
+        city: "Three Oaks",
+        location: "Vickers Theatre, Three Oaks, MI",
+        genre: "Jazz",
+        description: "A full day of jazz including Merrimans' Play-House Open Mic, Patti Shaffner with Buddy Pearson and Leandro Lopez Varady, and Sam Burckhardt with Jeremy Kahn and Jake Vinsel.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-david-nail-2026-09-19",
+        date: "2026-09-19",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "David Nail: Down To The Studs",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Country",
+        description: "Country artist David Nail performs the Down To The Studs show at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-10000-maniacs-2026-09-20",
+        date: "2026-09-20",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "10,000 Maniacs - 45 Years of Timeless Music",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Rock / pop",
+        description: "Alternative-rock pioneers celebrating 45 years of poetic storytelling, socially conscious lyrics, and enduring melodic rock.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-jeanne-franks-2026-09-20",
+        date: "2026-09-20",
+        time: "12:30 PM ET (11:30 AM CT)",
+        artist: "Jazz Sunday Brunch featuring Jeanne Franks at Commune + Market",
+        venue: "Commune + Market",
+        city: "Three Oaks",
+        location: "Commune + Market, Three Oaks, MI",
+        genre: "Jazz",
+        description: "Jazz vocalist and pianist Jeanne Franks performs a brunch event closing JazzFest weekend.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-thomas-gabriel-2026-09-24",
+        date: "2026-09-24",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Thomas Gabriel",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Americana / rock / roots",
+        description: "Outlaw-country and roots-influenced songwriter from the Cash family lineage, with raw, redemption-driven songs.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-mississippi-heat-2026-09-25",
+        date: "2026-09-25",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Mississippi Heat",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Chicago blues",
+        description: "Mississippi Heat brings Chicago blues to The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-ron-pope-2026-09-27",
+        date: "2026-09-27",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Ron Pope",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Singer-songwriter / Americana",
+        description: "Singer-songwriter Ron Pope performs at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-fruition-2026-10-04",
+        date: "2026-10-04",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Fruition",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Folk rock / Americana",
+        description: "Fruition brings folk-rock and Americana to The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-kylee-phillips-2026-10-09",
+        date: "2026-10-09",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Kylee Phillips - Before I Am Invisible Album Release Show",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Indie pop / singer-songwriter",
+        description: "Kylee Phillips celebrates the Before I Am Invisible album release at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-north-mississippi-allstars-2026-10-15",
+        date: "2026-10-15",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "North Mississippi Allstars",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Blues rock / roots",
+        description: "North Mississippi Allstars bring rootsy blues rock to The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-duke-tumatoe-2026-10-16",
+        date: "2026-10-16",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Duke Tumatoe & The Power Trio",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Blues",
+        description: "Blues guitarist, singer, and songwriter mixing blues, rock, R&B, humor, and seasoned stagecraft.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-jeff-tweedy-case-oats-2026-10-20",
+        date: "2026-10-20",
+        time: "7:30 PM ET (6:30 PM CT)",
+        artist: "Jeff Tweedy Solo Tour with special guest Case Oats",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Alternative rock / Americana",
+        description: "Sold-out solo tour stop by Jeff Tweedy with special guest Case Oats.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-bodeans-2026-10-25",
+        date: "2026-10-25",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "BoDeans: 40 years of Love & Hope & Sex & Dreams...and Good Things",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Rock / pop",
+        description: "The roots-rock band marks 40 years of songs, including heartland rock and Americana-leaning anthems.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-los-lobos-2026-11-15",
+        date: "2026-11-15",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Los Lobos",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Rock / Latin roots / Americana",
+        description: "A five-decade American band blending rock and roll, R&B, surf, soul, mariachi, nortena, punk, country, and Latin American roots.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      },
+      {
+        id: "acorn-dar-williams-2026-11-20",
+        date: "2026-11-20",
+        time: "8:00 PM ET (7:00 PM CT)",
+        artist: "Dar Williams",
+        venue: "The Acorn",
+        city: "Three Oaks",
+        location: "107 Generations Drive, Three Oaks, MI",
+        genre: "Folk / singer-songwriter",
+        description: "Folk singer-songwriter Dar Williams performs at The Acorn.",
+        source: "The Acorn ticketing page",
+        url: "https://www.acornlive.org/get-tickets/"
+      }
+    ];
+
+    const ryebellesJulyEvents = [
+      {
+        id: "ryebelles-neil-allessee-2026-07-11",
+        date: "2026-07-11",
+        time: "7:00 PM-11:00 PM ET",
+        artist: "Neil Allessee",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Acoustic covers / singer-songwriter",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-grant-milliren-2026-07-12",
+        date: "2026-07-12",
+        time: "4:00 PM-7:00 PM ET",
+        artist: "Grant Milliren",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Acoustic singer-songwriter",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-neil-allessee-2026-07-13",
+        date: "2026-07-13",
+        time: "See Instagram schedule",
+        artist: "Neil Allessee",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Acoustic covers / singer-songwriter",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-ryan-argast-2026-07-14",
+        date: "2026-07-14",
+        time: "See Instagram schedule",
+        artist: "Ryan Argast",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Rock / acoustic pop",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-leo-fron-2026-07-15",
+        date: "2026-07-15",
+        time: "See Instagram schedule",
+        artist: "Leo Fron Live",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Multi-genre solo acoustic",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-rob-yocum-2026-07-16",
+        date: "2026-07-16",
+        time: "See Instagram schedule",
+        artist: "Rob Yocum",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Acoustic covers",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-pablos-great-revenge-2026-07-17",
+        date: "2026-07-17",
+        time: "See Instagram schedule",
+        artist: "Pablo's Great Revenge",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Rock / jam / party band",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-kody-bryant-2026-07-18",
+        date: "2026-07-18",
+        time: "See Instagram schedule",
+        artist: "Kody Bryant",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Acoustic singer-songwriter",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-neil-allessee-2026-07-19",
+        date: "2026-07-19",
+        time: "See Instagram schedule",
+        artist: "Neil Allessee",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Acoustic covers / singer-songwriter",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-neil-allessee-2026-07-20",
+        date: "2026-07-20",
+        time: "See Instagram schedule",
+        artist: "Neil Allessee",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Acoustic covers / singer-songwriter",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-grayson-barton-2026-07-23",
+        date: "2026-07-23",
+        time: "See Instagram schedule",
+        artist: "Grayson Barton",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Acoustic singer-songwriter",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-mike-struwin-band-2026-07-24",
+        date: "2026-07-24",
+        time: "See Instagram schedule",
+        artist: "Mike Struwin Band",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Americana / roots rock",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-neil-allessee-2026-07-25",
+        date: "2026-07-25",
+        time: "See Instagram schedule",
+        artist: "Neil Allessee",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Acoustic covers / singer-songwriter",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-dylan-raymond-2026-07-26",
+        date: "2026-07-26",
+        time: "See Instagram schedule",
+        artist: "Dylan Raymond",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Country / pop",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-neil-allessee-2026-07-27",
+        date: "2026-07-27",
+        time: "See Instagram schedule",
+        artist: "Neil Allessee",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Acoustic covers / singer-songwriter",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-mike-struwin-2026-07-28",
+        date: "2026-07-28",
+        time: "See Instagram schedule",
+        artist: "Mike Struwin",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Americana / roots rock",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      },
+      {
+        id: "ryebelles-leo-fron-2026-07-29",
+        date: "2026-07-29",
+        time: "See Instagram schedule",
+        artist: "Leo Fron Live",
+        venue: "RyeBelles",
+        city: "St. Joseph",
+        location: "518 Broad Street, St. Joseph, MI",
+        genre: "Multi-genre solo acoustic",
+        description: "21+ live music on North State Terrace, weather permitting. Schedule read from RyeBelles' July Instagram calendar image.",
+        source: "RyeBelles Instagram July schedule image",
+        url: "https://www.instagram.com/ryebelles/"
+      }
+    ];
+
+    const sideyardJulyEvents = [
+      {
+        id: "sideyard-dan-maxon-2026-07-10",
+        date: "2026-07-10",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Dan Maxon",
+        venue: "SideYard",
+        city: "Sawyer",
+        location: "5870 Sawyer Road, Sawyer, MI",
+        genre: "Acoustic singer-songwriter",
+        description: "Future July event read from the SideYard Sawyer events flyer image.",
+        source: "SideYard Sawyer event flyer",
+        url: "https://www.sideyardsawyer.com/events"
+      },
+      {
+        id: "sideyard-matt-lenny-breakdown-2026-07-11",
+        date: "2026-07-11",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Matt Lenny + The Breakdown",
+        venue: "SideYard",
+        city: "Sawyer",
+        location: "5870 Sawyer Road, Sawyer, MI",
+        genre: "Rock / roots",
+        description: "Future July event read from the SideYard Sawyer events flyer image.",
+        source: "SideYard Sawyer event flyer",
+        url: "https://www.sideyardsawyer.com/events"
+      },
+      {
+        id: "sideyard-music-bingo-2026-07-17",
+        date: "2026-07-17",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Music Bingo",
+        venue: "SideYard",
+        city: "Sawyer",
+        location: "5870 Sawyer Road, Sawyer, MI",
+        genre: "Music bingo / interactive",
+        description: "Music Bingo event read from the SideYard Sawyer events flyer image.",
+        source: "SideYard Sawyer event flyer",
+        url: "https://www.sideyardsawyer.com/events"
+      },
+      {
+        id: "sideyard-robert-rolfe-feddersen-2026-07-18",
+        date: "2026-07-18",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Robert Rolfe Feddersen",
+        venue: "SideYard",
+        city: "Sawyer",
+        location: "5870 Sawyer Road, Sawyer, MI",
+        genre: "Americana / roots rock",
+        description: "Future July event read from the SideYard Sawyer events flyer image.",
+        source: "SideYard Sawyer event flyer",
+        url: "https://www.sideyardsawyer.com/events"
+      },
+      {
+        id: "sideyard-ellen-wallenfang-2026-07-24",
+        date: "2026-07-24",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Ellen Wallenfang",
+        venue: "SideYard",
+        city: "Sawyer",
+        location: "5870 Sawyer Road, Sawyer, MI",
+        genre: "Acoustic singer-songwriter",
+        description: "Future July event read from the SideYard Sawyer events flyer image.",
+        source: "SideYard Sawyer event flyer",
+        url: "https://www.sideyardsawyer.com/events"
+      },
+      {
+        id: "sideyard-sypian-family-band-2026-07-25",
+        date: "2026-07-25",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Sypian Family Band",
+        venue: "SideYard",
+        city: "Sawyer",
+        location: "5870 Sawyer Road, Sawyer, MI",
+        genre: "Family band / acoustic roots",
+        description: "Future July event read from the SideYard Sawyer events flyer image.",
+        source: "SideYard Sawyer event flyer",
+        url: "https://www.sideyardsawyer.com/events"
+      },
+      {
+        id: "sideyard-tbd-2026-07-31",
+        date: "2026-07-31",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "TBD",
+        venue: "SideYard",
+        city: "Sawyer",
+        location: "5870 Sawyer Road, Sawyer, MI",
+        genre: "TBD",
+        description: "The SideYard July flyer lists this date as TBD.",
+        source: "SideYard Sawyer event flyer",
+        url: "https://www.sideyardsawyer.com/events"
+      }
+    ];
+
+    const roundBarnMusicEvents = [
+      {
+        id: "roundbarn-twilight-tunes-dueling-pianos-2026-07-18",
+        date: "2026-07-18",
+        time: "Gates open 5:30 PM ET",
+        artist: "Twilight Tunes Dueling Pianos",
+        venue: "Round Barn Brewery & Public House",
+        city: "Baroda",
+        location: "9151 First Street, Baroda, MI",
+        genre: "Dueling pianos / sing-along",
+        description: "Interactive dueling-pianos performance with crowd favorites, sing-alongs, classic rock, country hits, pop anthems, and audience-requested songs.",
+        source: "Round Barn Dueling Pianos event page",
+        url: "https://roundbarn.com/event/duelingpianos"
+      },
+      {
+        id: "roundbarn-derek-caruso-blues-fuse-2026-07-25",
+        date: "2026-07-25",
+        time: "12:00 PM-2:30 PM ET",
+        artist: "Derek Caruso & The Blues Fuse",
+        venue: "Round Barn Winery & Estate",
+        city: "Baroda",
+        location: "Round Barn Winery & Estate, Baroda, MI",
+        genre: "Blues",
+        description: "Lemon Creek Blues Fest set in the Jammin' in the Vineyard Live Music Series, sponsored by Honor Credit Union.",
+        source: "Round Barn Lemon Creek Blues Fest event page",
+        url: "https://roundbarn.com/event/lemonblues"
+      },
+      {
+        id: "roundbarn-crook-county-blues-band-2026-07-25",
+        date: "2026-07-25",
+        time: "3:30 PM-6:30 PM ET",
+        artist: "Crook County Blues Band",
+        venue: "Round Barn Winery & Estate",
+        city: "Baroda",
+        location: "Round Barn Winery & Estate, Baroda, MI",
+        genre: "Blues",
+        description: "Lemon Creek Blues Fest set in the Jammin' in the Vineyard Live Music Series, sponsored by Honor Credit Union.",
+        source: "Round Barn Lemon Creek Blues Fest event page",
+        url: "https://roundbarn.com/event/lemonblues"
+      },
+      {
+        id: "roundbarn-five-second-rule-2026-07-26",
+        date: "2026-07-26",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Five Second Rule",
+        venue: "Round Barn Winery & Estate",
+        city: "Baroda",
+        location: "Round Barn Winery & Estate, Baroda, MI",
+        genre: "Blues / rock",
+        description: "Lemon Creek Blues Fest Sunday set in the Jammin' in the Vineyard Live Music Series, sponsored by Honor Credit Union.",
+        source: "Round Barn Lemon Creek Blues Fest event page",
+        url: "https://roundbarn.com/event/lemonblues"
+      },
+      {
+        id: "roundbarn-labor-day-mega-weekend-2026-09-04",
+        date: "2026-09-04",
+        time: "See venue details",
+        artist: "Labor Day Mega Weekend live music",
+        venue: "Round Barn Winery & Estate",
+        city: "Baroda",
+        location: "Round Barn Winery & Estate, Baroda, MI",
+        genre: "Live music weekend",
+        description: "Labor Day Mega Weekend at Round Barn Winery & Estate features three days of live music, wines, craft beers, cocktails, and vineyard lawn vibes. Artist lineup was not published on the page.",
+        source: "Round Barn Labor Day Mega Weekend event page",
+        url: "https://roundbarn.com/event/megaweekend"
+      },
+      {
+        id: "roundbarn-labor-day-mega-weekend-2026-09-05",
+        date: "2026-09-05",
+        time: "See venue details",
+        artist: "Labor Day Mega Weekend live music",
+        venue: "Round Barn Winery & Estate",
+        city: "Baroda",
+        location: "Round Barn Winery & Estate, Baroda, MI",
+        genre: "Live music weekend",
+        description: "Labor Day Mega Weekend at Round Barn Winery & Estate features live music across the holiday weekend. Artist lineup was not published on the page.",
+        source: "Round Barn Labor Day Mega Weekend event page",
+        url: "https://roundbarn.com/event/megaweekend"
+      },
+      {
+        id: "roundbarn-labor-day-mega-weekend-2026-09-06",
+        date: "2026-09-06",
+        time: "See venue details",
+        artist: "Labor Day Mega Weekend live music",
+        venue: "Round Barn Winery & Estate",
+        city: "Baroda",
+        location: "Round Barn Winery & Estate, Baroda, MI",
+        genre: "Live music weekend",
+        description: "Labor Day Mega Weekend at Round Barn Winery & Estate features live music across the holiday weekend. Artist lineup was not published on the page.",
+        source: "Round Barn Labor Day Mega Weekend event page",
+        url: "https://roundbarn.com/event/megaweekend"
+      }
+    ];
+
+    const liveryMusicEvents = [
+      {
+        id: "livery-songs-from-the-road-band-2026-07-10",
+        date: "2026-07-10",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "Songs From The Road Band",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Bluegrass / Americana",
+        description: "Live original music at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-sam-que-heavyweight-2026-07-11",
+        date: "2026-07-11",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "Sam Que & The Heavyweight",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Soul / funk / rock",
+        description: "Live original music at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-jon-dewitt-friends-2026-07-18",
+        date: "2026-07-18",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "Jon DeWitt & Friends",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Jam / rock",
+        description: "Live original music at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-tba-2026-07-24",
+        date: "2026-07-24",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "TBA",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "TBD live music",
+        description: "The Livery's live music PDF schedule lists this music slot as TBA.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-mulebone-2026-07-25",
+        date: "2026-07-25",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "Mulebone",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Blues / roots",
+        description: "Live original music at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-mighty-pines-2026-07-31",
+        date: "2026-07-31",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "The Mighty Pines",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Roots rock / Americana",
+        description: "Album release show at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-tba-2026-08-01",
+        date: "2026-08-01",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "TBA",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "TBD live music",
+        description: "The Livery's live music PDF schedule lists this music slot as TBA.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-open-stage-2026-08-02",
+        date: "2026-08-02",
+        time: "Sign up 4:30 PM / Start 5:00 PM / End 8:00 PM ET",
+        artist: "Open Stage",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Open mic / local music",
+        description: "Open Stage music event at The Livery.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-big-shrimp-2026-08-07",
+        date: "2026-08-07",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "Big Shrimp",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Jam / funk rock",
+        description: "Live original music at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-tba-anniversary-2026-08-14",
+        date: "2026-08-14",
+        time: "See venue details",
+        artist: "TBA",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "TBD live music",
+        description: "The Livery's 21st Anniversary Weekend Celebration music slot is listed as TBA.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-cruz-contreras-black-lilies-2026-08-15",
+        date: "2026-08-15",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "Cruz Contreras and The Black Lillies",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Americana / roots rock",
+        description: "The Livery's 21st Anniversary Weekend Celebration live music.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-may-erlewine-2026-09-19",
+        date: "2026-09-19",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "May Erlewine",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Folk / singer-songwriter",
+        description: "Live original music at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-drew-hutson-rogers-band-2026-10-02",
+        date: "2026-10-02",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "Drew Hutson Rogers Band",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Americana / rock",
+        description: "Live original music at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-chicken-wire-empire-2026-10-10",
+        date: "2026-10-10",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "Chicken Wire Empire",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Bluegrass / Americana",
+        description: "Live original music at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-mjt-2026-10-16",
+        date: "2026-10-16",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "MJT",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Jazz / funk",
+        description: "Live original music at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-armchair-boogie-2026-10-24",
+        date: "2026-10-24",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "Armchair Boogie",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Jamgrass / bluegrass",
+        description: "Live original music at The Livery. Listed on The Livery's live music PDF schedule.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-desmond-jones-psycho-killers-2026-10-31",
+        date: "2026-10-31",
+        time: "Doors 7:30 PM / Show 8:30 PM ET",
+        artist: "Desmond Jones presents Psycho Killers - A Talking Heads Dance Party",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Talking Heads tribute / dance rock",
+        description: "Halloween dance party presented by Desmond Jones with Talking Heads music.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      },
+      {
+        id: "livery-paul-mow-friends-holiday-2026-12-19",
+        date: "2026-12-19",
+        time: "Doors 7:00 PM / Show 8:00 PM ET",
+        artist: "Paul Mow & Friends Holiday Show",
+        venue: "The Livery",
+        city: "Benton Harbor",
+        location: "190 5th Street, Benton Harbor, MI",
+        genre: "Holiday cabaret",
+        description: "Holiday cabaret show at The Livery with Paul Mow & Friends.",
+        source: "The Livery live-music PDF schedule",
+        url: "https://www.liverybrew.com/live-music"
+      }
+    ];
+
+    const localPourMusicEvents = [
+      {
+        id: "localpour-karaoke-2026-07-10",
+        date: "2026-07-10",
+        time: "6:30 PM-8:30 PM ET",
+        artist: "Karaoke",
+        venue: "Local Pour",
+        city: "Sawyer",
+        location: "12857 Red Arrow Hwy, Sawyer, MI",
+        genre: "Karaoke / local music",
+        description: "Karaoke night at Local Pour: listen to local talents or join in.",
+        source: "Local Pour events page",
+        url: "https://www.localpourmi.com/events"
+      },
+      {
+        id: "localpour-larry-johnson-modern-day-drifters-2026-07-11",
+        date: "2026-07-11",
+        time: "4:00 PM-7:00 PM ET",
+        artist: "Larry Johnson and The Modern Day Drifters",
+        venue: "Local Pour",
+        city: "Sawyer",
+        location: "12857 Red Arrow Hwy, Sawyer, MI",
+        genre: "Country / Americana",
+        description: "Live music at Local Pour featuring Larry Johnson and The Modern Day Drifters.",
+        source: "Local Pour events page",
+        url: "https://www.localpourmi.com/events"
+      },
+      {
+        id: "localpour-john-ford-blues-2026-07-17",
+        date: "2026-07-17",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "John Ford Blues",
+        venue: "Local Pour",
+        city: "Sawyer",
+        location: "12857 Red Arrow Hwy, Sawyer, MI",
+        genre: "Blues",
+        description: "Live blues music at Local Pour with John Ford Blues.",
+        source: "Local Pour events page",
+        url: "https://www.localpourmi.com/events"
+      },
+      {
+        id: "localpour-chris-behre-2026-07-18",
+        date: "2026-07-18",
+        time: "4:00 PM-7:00 PM ET",
+        artist: "Chris Behre",
+        venue: "Local Pour",
+        city: "Sawyer",
+        location: "12857 Red Arrow Hwy, Sawyer, MI",
+        genre: "Acoustic singer-songwriter",
+        description: "Chris Behre performs original songs and memorable cover renditions at Local Pour.",
+        source: "Local Pour events page",
+        url: "https://www.localpourmi.com/events"
+      },
+      {
+        id: "localpour-elliott-skjordal-joel-gorenflo-2026-07-25",
+        date: "2026-07-25",
+        time: "4:00 PM-7:00 PM ET",
+        artist: "Elliott Skjordal & Joel Gorenflo",
+        venue: "Local Pour",
+        city: "Sawyer",
+        location: "12857 Red Arrow Hwy, Sawyer, MI",
+        genre: "Multi-genre acoustic",
+        description: "Elliott Skjordal and Joel Gorenflo play many genres and eras of music together at Local Pour.",
+        source: "Local Pour events page",
+        url: "https://www.localpourmi.com/events"
+      }
+    ];
+
+    const chikamingParkMusicEvents = [
+      {
+        id: "chikaming-st-joe-jack-2026-07-25",
+        date: "2026-07-25",
+        time: "5:30 PM ET",
+        artist: "St. Joe Jack",
+        venue: "Chikaming Township Park",
+        city: "Harbert",
+        location: "Harbert Community Park, Harbert, MI",
+        genre: "Acoustic",
+        description: "Music in the Park Concert Series set at Harbert Community Park. All times are Eastern Daylight Time.",
+        source: "Chikaming Township park events page",
+        url: "https://www.chikamingtownship.org/park-events-and-programs"
+      },
+      {
+        id: "chikaming-edgar-wilbury-experience-2026-07-25",
+        date: "2026-07-25",
+        time: "7:00 PM ET",
+        artist: "The Edgar Willbury Experience",
+        venue: "Chikaming Township Park",
+        city: "Harbert",
+        location: "Harbert Community Park, Harbert, MI",
+        genre: "Classic rock covers",
+        description: "Music in the Park Concert Series set at Harbert Community Park. All times are Eastern Daylight Time.",
+        source: "Chikaming Township park events page",
+        url: "https://www.chikamingtownship.org/park-events-and-programs"
+      },
+      {
+        id: "chikaming-ps-dump-your-boyfriend-2026-08-15",
+        date: "2026-08-15",
+        time: "8:00 PM ET",
+        artist: "P.S. Dump Your Boyfriend",
+        venue: "Chikaming Township Park",
+        city: "Harbert",
+        location: "Harbert Community Park, Harbert, MI",
+        genre: "Rock / pop covers",
+        description: "Music in the Park Concert Series set at Harbert Community Park. All times are Eastern Daylight Time.",
+        source: "Chikaming Township park events page",
+        url: "https://www.chikamingtownship.org/park-events-and-programs"
+      },
+      {
+        id: "chikaming-livia-gazzolo-2026-08-22",
+        date: "2026-08-22",
+        time: "5:30 PM ET",
+        artist: "Livia Gazzolo",
+        venue: "Chikaming Township Park",
+        city: "Harbert",
+        location: "Harbert Community Park, Harbert, MI",
+        genre: "Vocal jazz / cabaret",
+        description: "Music in the Park Concert Series set at Harbert Community Park. All times are Eastern Daylight Time.",
+        source: "Chikaming Township park events page",
+        url: "https://www.chikamingtownship.org/park-events-and-programs"
+      },
+      {
+        id: "chikaming-martha-cares-jazz-ensemble-2026-08-22",
+        date: "2026-08-22",
+        time: "7:00 PM ET",
+        artist: "Martha Cares Jazz Ensemble",
+        venue: "Chikaming Township Park",
+        city: "Harbert",
+        location: "Harbert Community Park, Harbert, MI",
+        genre: "Jazz / cabaret",
+        description: "Music in the Park Concert Series set at Harbert Community Park. All times are Eastern Daylight Time.",
+        source: "Chikaming Township park events page",
+        url: "https://www.chikamingtownship.org/park-events-and-programs"
+      }
+    ];
+
+    const dablonMusicEvents = [
+      {
+        id: "dablon-chris-burch-2026-07-12",
+        date: "2026-07-12",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Chris Burch",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Dablon Winery. Chris Burch is an alternative rock influenced artist with sharp songwriting and raw vocals.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-chris-burch-74/"
+      },
+      {
+        id: "dablon-jimmy-fastiggi-2026-07-19",
+        date: "2026-07-19",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Jimmy Fastiggi",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Dablon Winery. Jimmy Fastiggi is a self-taught guitarist and singer-songwriter.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-jimmy-fastiggi-29/"
+      },
+      {
+        id: "dablon-chris-burch-2026-07-26",
+        date: "2026-07-26",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Chris Burch",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Dablon Winery. Chris Burch is an alternative rock influenced artist with sharp songwriting and raw vocals.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-chris-burch-75/"
+      },
+      {
+        id: "dablon-chris-burch-2026-08-09",
+        date: "2026-08-09",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Chris Burch",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Dablon Winery. Chris Burch is an alternative rock influenced artist with sharp songwriting and raw vocals.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-chris-burch-76/"
+      },
+      {
+        id: "dablon-matt-gabriel-2026-08-16",
+        date: "2026-08-16",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Matt Gabriel",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Folk / Americana",
+        description: "Live music at Dablon Winery. Matt Gabriel is a Grand Rapids singer-songwriter performing folk and Americana.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-matt-gabriel-40/"
+      },
+      {
+        id: "dablon-chris-burch-2026-08-23",
+        date: "2026-08-23",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Chris Burch",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Dablon Winery. Chris Burch is an alternative rock influenced artist with sharp songwriting and raw vocals.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-chris-burch-77/"
+      },
+      {
+        id: "dablon-joe-bisceglia-2026-08-30",
+        date: "2026-08-30",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Joe Bisceglia",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Dablon Winery. Joe Bisceglia is an experienced singer-songwriter and entertainer.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-joe-bisceglia-6/"
+      },
+      {
+        id: "dablon-matt-gabriel-2026-09-06",
+        date: "2026-09-06",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Matt Gabriel",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Folk / Americana",
+        description: "Live music at Dablon Winery. Matt Gabriel is a Grand Rapids singer-songwriter performing folk and Americana.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-matt-gabriel-41/"
+      },
+      {
+        id: "dablon-chris-burch-2026-09-13",
+        date: "2026-09-13",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Chris Burch",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Dablon Winery. Chris Burch is an alternative rock influenced artist with sharp songwriting and raw vocals.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-chris-burch-78/"
+      },
+      {
+        id: "dablon-edd-skorjal-2026-09-20",
+        date: "2026-09-20",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Edd Skorjal",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Dablon Winery. Edd Skorjal has played drums and percussion for over fifty years and performs on his own musical path.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-edd-skorjal-2/"
+      },
+      {
+        id: "dablon-chris-burch-2026-09-27",
+        date: "2026-09-27",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Chris Burch",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Dablon Winery. Chris Burch is an alternative rock influenced artist with sharp songwriting and raw vocals.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-chris-burch-79/"
+      },
+      {
+        id: "dablon-matt-gabriel-2026-10-04",
+        date: "2026-10-04",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Matt Gabriel",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Folk / Americana",
+        description: "Live music at Dablon Winery. Matt Gabriel is a Grand Rapids singer-songwriter performing folk and Americana.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-matt-gabriel-42/"
+      }
+    ];
+
+    const lemonCreekMusicEvents = [
+      {
+        id: "lemoncreek-dave-johnson-2026-07-10",
+        date: "2026-07-10",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Dave Johnson",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-dave-johnson/"
+      },
+      {
+        id: "lemoncreek-leanne-meghan-2026-07-17",
+        date: "2026-07-17",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Leanne and Meghan",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-leanne-and-meghan-2/"
+      },
+      {
+        id: "lemoncreek-dave-and-john-2026-07-24",
+        date: "2026-07-24",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Dave and John",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-dave-and-john/"
+      },
+      {
+        id: "lemoncreek-brian-mcclure-2026-07-31",
+        date: "2026-07-31",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Brian McClure",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-brian-mcclure-2/"
+      },
+      {
+        id: "lemoncreek-edd-skjordal-2026-08-07",
+        date: "2026-08-07",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Edd Skjordal",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-edd-skjordal-2/"
+      },
+      {
+        id: "lemoncreek-dave-johnson-2026-08-14",
+        date: "2026-08-14",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Dave Johnson",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-dave-johnson-2/"
+      },
+      {
+        id: "lemoncreek-tim-velez-2026-08-21",
+        date: "2026-08-21",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Tim Velez",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-tim-velez-2/"
+      },
+      {
+        id: "lemoncreek-barley-priest-2026-08-28",
+        date: "2026-08-28",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Barley Priest",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Folk / Americana",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-barley-priest/"
+      },
+      {
+        id: "lemoncreek-lynn-thompson-2026-09-04",
+        date: "2026-09-04",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Lynn Thompson",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-lynn-thompson/"
+      },
+      {
+        id: "lemoncreek-mike-struwin-2026-09-11",
+        date: "2026-09-11",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Mike Struwin",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Folk / Americana",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-mike-struwin/"
+      },
+      {
+        id: "lemoncreek-dave-and-john-2026-09-18",
+        date: "2026-09-18",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Dave and John",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-dave-and-john-2/"
+      },
+      {
+        id: "lemoncreek-edd-skjordal-2026-09-25",
+        date: "2026-09-25",
+        time: "5:00 PM-8:00 PM ET",
+        artist: "Edd Skjordal",
+        venue: "Lemon Creek Winery",
+        city: "Berrien Springs",
+        location: "Lemon Creek Winery, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Free outdoor live music at Lemon Creek Winery with food trucks and WBG specials.",
+        source: "Lemon Creek Winery events page",
+        url: "https://lemoncreekwinery.com/event/live-music-fridays-w-edd-skjordal-3/"
+      }
+    ];
+
+    const gravityMusicEvents = [
+      {
+        id: "gravity-champagne-duo-2026-07-11",
+        date: "2026-07-11",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Champagne Duo",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-champagne-duo-2/"
+      },
+      {
+        id: "gravity-shane-lindeman-2026-07-12",
+        date: "2026-07-12",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Shane Lindeman",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-shane-lindeman-3/"
+      },
+      {
+        id: "gravity-jonny-love-2026-07-18",
+        date: "2026-07-18",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Jonny Love",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-jonny-love-3/"
+      },
+      {
+        id: "gravity-joshua-andrews-2026-07-19",
+        date: "2026-07-19",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Joshua Andrews",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-alex-drakulich-3/"
+      },
+      {
+        id: "gravity-weko-boys-2026-07-25",
+        date: "2026-07-25",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "The Weko Boys",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-the-weko-boys-2/"
+      },
+      {
+        id: "gravity-jim-kalabokis-2026-07-26",
+        date: "2026-07-26",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Jim Kalabokis",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-jim-kalabokis-2/"
+      },
+      {
+        id: "gravity-brian-mcclure-2026-08-01",
+        date: "2026-08-01",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Brian McClure",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-brian-mcclure-3/"
+      },
+      {
+        id: "gravity-don-field-2026-08-02",
+        date: "2026-08-02",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Don Field",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-don-field-2/"
+      },
+      {
+        id: "gravity-backsliders-2026-08-08",
+        date: "2026-08-08",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "The Backsliders",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-the-backsliders-3/"
+      },
+      {
+        id: "gravity-grant-milliren-2026-08-09",
+        date: "2026-08-09",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Grant Milliren",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-grant-milliren-3/"
+      },
+      {
+        id: "gravity-jonny-love-2026-08-15",
+        date: "2026-08-15",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Jonny Love",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-jonny-love-4/"
+      },
+      {
+        id: "gravity-kamrynn-weber-2026-08-16",
+        date: "2026-08-16",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Kamrynn Weber",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-kamrynn-weber-3/"
+      },
+      {
+        id: "gravity-champagne-duo-2026-08-22",
+        date: "2026-08-22",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Champagne Duo",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-champagne-duo-3/"
+      },
+      {
+        id: "gravity-shane-lindeman-2026-08-23",
+        date: "2026-08-23",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Shane Lindeman",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-shane-lindeman-4/"
+      },
+      {
+        id: "gravity-brian-mcclure-2026-08-29",
+        date: "2026-08-29",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Brian McClure",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-brian-mcclure-4/"
+      },
+      {
+        id: "gravity-joshua-alexander-2026-08-30",
+        date: "2026-08-30",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Joshua Alexander",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-alex-drakulich-4/"
+      },
+      {
+        id: "gravity-don-field-2026-09-05",
+        date: "2026-09-05",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Don Field",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-don-field-3/"
+      },
+      {
+        id: "gravity-grant-milliren-2026-09-06",
+        date: "2026-09-06",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Grant Milliren",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-grant-milliren-4/"
+      },
+      {
+        id: "gravity-jim-kalabokis-2026-09-12",
+        date: "2026-09-12",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Jim Kalabokis",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-jim-kalabokis-3/"
+      },
+      {
+        id: "gravity-kamrynn-weber-2026-09-13",
+        date: "2026-09-13",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Kamrynn Weber",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-kamrynn-weber-4/"
+      },
+      {
+        id: "gravity-backsliders-2026-09-19",
+        date: "2026-09-19",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "The Backsliders",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-the-backsliders-4/"
+      },
+      {
+        id: "gravity-brian-mcclure-2026-09-20",
+        date: "2026-09-20",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Brian McClure",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-brian-mcclure-5/"
+      },
+      {
+        id: "gravity-shane-lindeman-2026-09-26",
+        date: "2026-09-26",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Shane Lindeman",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-shane-lindeman-5/"
+      },
+      {
+        id: "gravity-weko-boys-2026-09-27",
+        date: "2026-09-27",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "The Weko Boys",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-the-weko-boys-3/"
+      },
+      {
+        id: "gravity-champagne-duo-2026-10-03",
+        date: "2026-10-03",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Champagne Duo",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-champagne-duo-4/"
+      },
+      {
+        id: "gravity-backsliders-2026-10-04",
+        date: "2026-10-04",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "The Backsliders",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-the-backsliders-5/"
+      },
+      {
+        id: "gravity-kamrynn-weber-2026-10-10",
+        date: "2026-10-10",
+        time: "12:30 PM-3:00 PM ET",
+        artist: "Kamrynn Weber",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-kamrynn-weber-5/"
+      },
+      {
+        id: "gravity-jonny-love-2026-10-11",
+        date: "2026-10-11",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Jonny Love",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-jonny-love-5/"
+      },
+      {
+        id: "gravity-don-field-2026-10-17",
+        date: "2026-10-17",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Don Field",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-don-field-4/"
+      },
+      {
+        id: "gravity-grant-milliren-2026-10-18",
+        date: "2026-10-18",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Grant Milliren",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-grant-milliren-5/"
+      },
+      {
+        id: "gravity-shane-lindeman-2026-10-24",
+        date: "2026-10-24",
+        time: "12:00 PM-3:00 PM ET",
+        artist: "Shane Lindeman",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-shane-lindeman-6/"
+      },
+      {
+        id: "gravity-brian-mcclure-2026-10-25",
+        date: "2026-10-25",
+        time: "2:00 PM-5:00 PM ET",
+        artist: "Brian McClure",
+        venue: "Gravity Winery",
+        city: "Baroda",
+        location: "Gravity Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Gravity Winery.",
+        source: "Gravity Winery events calendar",
+        url: "https://gravitywine.com/event/live-music-brian-mcclure-6/"
+      }
+    ];
+
+    const twelveCornersMusicEvents = [
+      {
+        id: "12corners-midwestern-lull-duo-2026-07-11",
+        date: "2026-07-11",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Midwestern Lull Duo",
+        venue: "12 Corners Vineyards",
+        city: "Benton Harbor",
+        location: "1201 Benton Center Rd, Benton Harbor, MI",
+        genre: "Acoustic",
+        description: "Music in the Vineyard 2026 July & August set read from the 12 Corners flyer image.",
+        source: "12 Corners Music in the Vineyard flyer",
+        url: "https://www.12corners.com/page?pageid=16AEFE63-CD56-40A6-832E-0DCD986E4877"
+      },
+      {
+        id: "12corners-sole-survivor-2026-07-18",
+        date: "2026-07-18",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Sole Survivor",
+        venue: "12 Corners Vineyards",
+        city: "Benton Harbor",
+        location: "1201 Benton Center Rd, Benton Harbor, MI",
+        genre: "Rock",
+        description: "Music in the Vineyard 2026 July & August set read from the 12 Corners flyer image.",
+        source: "12 Corners Music in the Vineyard flyer",
+        url: "https://www.12corners.com/page?pageid=16AEFE63-CD56-40A6-832E-0DCD986E4877"
+      },
+      {
+        id: "12corners-gregg-tracy-2026-07-25",
+        date: "2026-07-25",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Gregg & Tracy",
+        venue: "12 Corners Vineyards",
+        city: "Benton Harbor",
+        location: "1201 Benton Center Rd, Benton Harbor, MI",
+        genre: "Acoustic",
+        description: "Music in the Vineyard 2026 July & August set read from the 12 Corners flyer image.",
+        source: "12 Corners Music in the Vineyard flyer",
+        url: "https://www.12corners.com/page?pageid=16AEFE63-CD56-40A6-832E-0DCD986E4877"
+      },
+      {
+        id: "12corners-matt-gabriel-2026-08-01",
+        date: "2026-08-01",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Matt Gabriel",
+        venue: "12 Corners Vineyards",
+        city: "Benton Harbor",
+        location: "1201 Benton Center Rd, Benton Harbor, MI",
+        genre: "Folk / Americana",
+        description: "Music in the Vineyard 2026 July & August set read from the 12 Corners flyer image.",
+        source: "12 Corners Music in the Vineyard flyer",
+        url: "https://www.12corners.com/page?pageid=16AEFE63-CD56-40A6-832E-0DCD986E4877"
+      },
+      {
+        id: "12corners-tim-velez-2026-08-08",
+        date: "2026-08-08",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Tim Velez",
+        venue: "12 Corners Vineyards",
+        city: "Benton Harbor",
+        location: "1201 Benton Center Rd, Benton Harbor, MI",
+        genre: "Acoustic",
+        description: "Music in the Vineyard 2026 July & August set read from the 12 Corners flyer image.",
+        source: "12 Corners Music in the Vineyard flyer",
+        url: "https://www.12corners.com/page?pageid=16AEFE63-CD56-40A6-832E-0DCD986E4877"
+      },
+      {
+        id: "12corners-kody-bryant-2026-08-15",
+        date: "2026-08-15",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Kody Bryant",
+        venue: "12 Corners Vineyards",
+        city: "Benton Harbor",
+        location: "1201 Benton Center Rd, Benton Harbor, MI",
+        genre: "Acoustic",
+        description: "Music in the Vineyard 2026 July & August set read from the 12 Corners flyer image.",
+        source: "12 Corners Music in the Vineyard flyer",
+        url: "https://www.12corners.com/page?pageid=16AEFE63-CD56-40A6-832E-0DCD986E4877"
+      },
+      {
+        id: "12corners-matt-gabriel-2026-08-22",
+        date: "2026-08-22",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Matt Gabriel",
+        venue: "12 Corners Vineyards",
+        city: "Benton Harbor",
+        location: "1201 Benton Center Rd, Benton Harbor, MI",
+        genre: "Folk / Americana",
+        description: "Music in the Vineyard 2026 July & August set read from the 12 Corners flyer image.",
+        source: "12 Corners Music in the Vineyard flyer",
+        url: "https://www.12corners.com/page?pageid=16AEFE63-CD56-40A6-832E-0DCD986E4877"
+      },
+      {
+        id: "12corners-chad-hevana-2026-08-29",
+        date: "2026-08-29",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Chad & Hevana",
+        venue: "12 Corners Vineyards",
+        city: "Benton Harbor",
+        location: "1201 Benton Center Rd, Benton Harbor, MI",
+        genre: "Acoustic",
+        description: "Music in the Vineyard 2026 July & August set read from the 12 Corners flyer image.",
+        source: "12 Corners Music in the Vineyard flyer",
+        url: "https://www.12corners.com/page?pageid=16AEFE63-CD56-40A6-832E-0DCD986E4877"
+      }
+    ];
+
+    const buchananCommonMusicEvents = [
+      {
+        id: "buchanan-van-dyke-review-2026-07-16",
+        date: "2026-07-16",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "The Van Dyke Review",
+        venue: "Buchanan Common",
+        city: "Buchanan",
+        location: "The Buchanan Common, Buchanan, MI",
+        genre: "Tribute",
+        description: "The Common Concert Series free outdoor show. The Van Dyke Review performs rock with a Beatles tribute focus.",
+        source: "City of Buchanan calendar",
+        url: "https://www.cityofbuchanan.com/community/page/van-dyke-review-common-concert-series"
+      },
+      {
+        id: "buchanan-hey-annie-2026-07-23",
+        date: "2026-07-23",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Hey Annie",
+        venue: "Buchanan Common",
+        city: "Buchanan",
+        location: "The Buchanan Common, Buchanan, MI",
+        genre: "Rock",
+        description: "The Common Concert Series free outdoor show. Hey Annie performs original, classic, and cross-generational rock.",
+        source: "City of Buchanan calendar",
+        url: "https://www.cityofbuchanan.com/community/page/hey-annie-common-concert-series-0"
+      },
+      {
+        id: "buchanan-campfire-jam-2026-07-24",
+        date: "2026-07-24",
+        time: "4:00 PM-10:00 PM ET",
+        artist: "Campfire Jam at the Common",
+        venue: "Buchanan Common",
+        city: "Buchanan",
+        location: "The Buchanan Common, Buchanan, MI",
+        genre: "Special Event",
+        description: "The Common Concert Series free outdoor open jam hosted by the Redbud Ramblers.",
+        source: "City of Buchanan calendar",
+        url: "https://www.cityofbuchanan.com/community/page/campfire-jam-common-common-concert-series"
+      },
+      {
+        id: "buchanan-shady-grove-bluegrass-festival-2026-07-25",
+        date: "2026-07-25",
+        time: "4:00 PM-10:00 PM ET",
+        artist: "Shady Grove Bluegrass Festival",
+        venue: "Buchanan Common",
+        city: "Buchanan",
+        location: "The Buchanan Common, Buchanan, MI",
+        genre: "Bluegrass",
+        description: "The Common Concert Series free outdoor festival with Horseshoes & Hand Grenades, Watershed Ramblers, Sweet Dee & The Wild Honeys, and Shreddy Tendergrass.",
+        source: "City of Buchanan calendar",
+        url: "https://www.cityofbuchanan.com/community/page/shady-grove-bluegrass-festival-common-concert-series-0"
+      },
+      {
+        id: "buchanan-grahame-lesh-friends-2026-08-08",
+        date: "2026-08-08",
+        time: "4:00 PM-10:00 PM ET",
+        artist: "Grahame Lesh & Friends - Shakedown Saturday",
+        venue: "Buchanan Common",
+        city: "Buchanan",
+        location: "The Buchanan Common, Buchanan, MI",
+        genre: "Rock",
+        description: "The Common Concert Series free outdoor Grateful Dead-inspired Shakedown Saturday with supporting acts The Happy Campers and Breakfast For Dinner.",
+        source: "City of Buchanan calendar",
+        url: "https://www.cityofbuchanan.com/community/page/grahame-lesh-friends-shakedown-saturday-common-concert-series"
+      },
+      {
+        id: "buchanan-reverend-jesse-ray-2026-08-13",
+        date: "2026-08-13",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Reverend Jesse Ray",
+        venue: "Buchanan Common",
+        city: "Buchanan",
+        location: "The Buchanan Common, Buchanan, MI",
+        genre: "Rock",
+        description: "The Common Concert Series free outdoor show with raw rockabilly and hillbilly blues energy.",
+        source: "City of Buchanan calendar",
+        url: "https://www.cityofbuchanan.com/community/page/reverend-jesse-ray-common-concert-series"
+      },
+      {
+        id: "buchanan-midwest-hype-2026-08-15",
+        date: "2026-08-15",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Midwest Hype",
+        venue: "Buchanan Common",
+        city: "Buchanan",
+        location: "The Buchanan Common, Buchanan, MI",
+        genre: "Funk / Soul",
+        description: "The Common Concert Series free outdoor show blending funk, reggae, rock, jazz, and hip-hop.",
+        source: "City of Buchanan calendar",
+        url: "https://www.cityofbuchanan.com/community/page/midwest-hype-common-concert-series-0"
+      },
+      {
+        id: "buchanan-newport-prairie-project-2026-08-20",
+        date: "2026-08-20",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Newport Prairie Project",
+        venue: "Buchanan Common",
+        city: "Buchanan",
+        location: "The Buchanan Common, Buchanan, MI",
+        genre: "Rock",
+        description: "The Common Concert Series free outdoor show with blues, alt-country, and heartland rock.",
+        source: "City of Buchanan calendar",
+        url: "https://www.cityofbuchanan.com/community/page/newport-prairie-project-common-concert-series"
+      },
+      {
+        id: "buchanan-mark-lavengood-band-2026-08-22",
+        date: "2026-08-22",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Mark Lavengood Band",
+        venue: "Buchanan Common",
+        city: "Buchanan",
+        location: "The Buchanan Common, Buchanan, MI",
+        genre: "Folk / Americana",
+        description: "The Common Concert Series free outdoor show with Mark Lavengood Band.",
+        source: "City of Buchanan calendar",
+        url: "https://www.cityofbuchanan.com/community/page/mark-lavengood-band-common-concert-series"
+      }
+    ];
+
+    const riverSaintJoeMusicEvents = [
+      {
+        id: "riverstjoe-john-neafsey-2026-07-10",
+        date: "2026-07-10",
+        time: "See venue details",
+        artist: "John Neafsey",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Music with John Neafsey in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-backsliders-2026-07-17",
+        date: "2026-07-17",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "The Backsliders",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Rock",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-ruby-2026-07-26",
+        date: "2026-07-26",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "Ruby",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-timothy-velez-2026-08-02",
+        date: "2026-08-02",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "Timothy Velez",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-bobcat-opossum-2026-08-07",
+        date: "2026-08-07",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "Bobcat Opossum",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-hannah-davis-2026-08-14",
+        date: "2026-08-14",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "Hannah Davis",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-terri-ann-robert-rolfe-feddersen-2026-08-21",
+        date: "2026-08-21",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "Terri Ann & Robert Rolfe Feddersen",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Folk / Americana",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-rev-jesse-ray-2026-08-28",
+        date: "2026-08-28",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "Rev. Jesse Ray",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Rock",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-newport-project-2026-09-06",
+        date: "2026-09-06",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "The Newport Project",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Rock",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-shelby-lentz-2026-09-07",
+        date: "2026-09-07",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "Shelby Lentz",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-leo-fron-2026-09-14",
+        date: "2026-09-14",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "Leo Fron",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      },
+      {
+        id: "riverstjoe-bobcat-opossum-2026-09-21",
+        date: "2026-09-21",
+        time: "5:30 PM-7:30 PM ET",
+        artist: "Bobcat Opossum",
+        venue: "River Saint Joe",
+        city: "Buchanan",
+        location: "15475 Walton Road, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Free live music in the beer garden at River Saint Joe.",
+        source: "River Saint Joe events list",
+        url: "https://www.riversaintjoe.com/events"
+      }
+    ];
+
+    const events = [
+      ...scrapedEvents,
+      ...acornTicketEvents,
+      ...ryebellesJulyEvents,
+      ...sideyardJulyEvents,
+      ...roundBarnMusicEvents,
+      ...liveryMusicEvents,
+      ...localPourMusicEvents,
+      ...chikamingParkMusicEvents,
+      ...dablonMusicEvents,
+      ...lemonCreekMusicEvents,
+      ...gravityMusicEvents,
+      ...twelveCornersMusicEvents,
+      ...buchananCommonMusicEvents,
+      ...riverSaintJoeMusicEvents
+    ];
+
+    const state = {
+      query: "",
+      venue: "All",
+      genre: "All",
+      view: "calendar"
+    };
+
+    const todayDate = getTodayDate();
+    const todayKey = dateKey(todayDate);
+    const startDate = todayDate;
+    const sixMonthsOut = addMonths(todayDate, 6);
+    const latestEventDate = events.reduce((latest, event) => {
+      const eventDate = parseDate(event.date);
+      return eventDate > latest ? eventDate : latest;
+    }, sixMonthsOut);
+    const endDate = latestEventDate;
+    const formatter = new Intl.DateTimeFormat("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" });
+    const monthFormatter = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" });
+    const monthAbbrFormatter = new Intl.DateTimeFormat("en-US", { month: "short" });
+
+    const els = {
+      search: document.getElementById("searchInput"),
+      venue: document.getElementById("venueFilter"),
+      genre: document.getElementById("genreFilter"),
+      calendar: document.getElementById("calendarView"),
+      listView: document.getElementById("listView"),
+      eventList: document.getElementById("eventList"),
+      calendarBtn: document.getElementById("calendarBtn"),
+      listBtn: document.getElementById("listBtn"),
+      resetBtn: document.getElementById("resetBtn"),
+      resultsTitle: document.getElementById("resultsTitle"),
+      resultsMeta: document.getElementById("resultsMeta"),
+      eventCount: document.getElementById("eventCount"),
+      venueCount: document.getElementById("venueCount"),
+      upcomingList: document.getElementById("upcomingList"),
+      genreMix: document.getElementById("genreMix"),
+      coverageList: document.getElementById("coverageList"),
+      sourceList: document.getElementById("sourceList"),
+      modalBackdrop: document.getElementById("modalBackdrop"),
+      closeModalBtn: document.getElementById("closeModalBtn"),
+      modalGenre: document.getElementById("modalGenre"),
+      modalTitle: document.getElementById("modalTitle"),
+      modalMeta: document.getElementById("modalMeta"),
+      modalVenue: document.getElementById("modalVenue"),
+      modalTime: document.getElementById("modalTime"),
+      modalLocation: document.getElementById("modalLocation"),
+      modalSource: document.getElementById("modalSource"),
+      modalDescription: document.getElementById("modalDescription"),
+      modalSourceLink: document.getElementById("modalSourceLink")
+    };
+
+    function parseDate(value) {
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day, 12);
+    }
+
+    function getTodayDate() {
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12);
+    }
+
+    function addMonths(date, months) {
+      return new Date(date.getFullYear(), date.getMonth() + months, date.getDate(), 12);
+    }
+
+    function dateKey(date) {
+      return [
+        date.getFullYear(),
+        String(date.getMonth() + 1).padStart(2, "0"),
+        String(date.getDate()).padStart(2, "0")
+      ].join("-");
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+
+    function displayGenre(event) {
+      const text = `${event.genre} ${event.artist} ${event.description}`.toLowerCase();
+      const artist = event.artist.toLowerCase();
+      if (text.includes("tbd")) return "TBD";
+      if (text.includes("karaoke")) return "Karaoke";
+      if (artist.includes("st. joe jack") || artist.includes("leo fron") || artist.includes("edd sk")) return "Acoustic";
+      if (text.includes("cabaret") || artist.includes("paul mow") || text.includes("rat pack") || text.includes("dueling pianos")) return "Cabaret";
+      if (text.includes("acoustic") || text.includes("singer-songwriter") || text.includes("songwriter") || text.includes("solo acoustic")) return "Acoustic";
+      if (text.includes("bingo") || text.includes("open mic") || text.includes("open stage") || text.includes("camp") || text.includes("fundraiser") || text.includes("storytelling") || text.includes("weekend")) return "Special Event";
+      if (text.includes("tribute") || text.includes("beatles") || text.includes("springsteen") || text.includes("talking heads") || text.includes("doors") || text.includes("tom petty") || text.includes("chicago experience")) return "Tribute";
+      if (text.includes("dj") || text.includes("dance party")) return "DJ / Dance";
+      if (text.includes("jazz") || text.includes("cabaret") || text.includes("big band")) return "Jazz";
+      if (text.includes("blues")) return "Blues";
+      if (text.includes("country") || text.includes("honky")) return "Country";
+      if (text.includes("bluegrass") || text.includes("jamgrass")) return "Bluegrass";
+      if (text.includes("folk") || text.includes("americana") || text.includes("roots") || text.includes("irish")) return "Folk / Americana";
+      if (text.includes("funk") || text.includes("soul") || text.includes("r&b") || text.includes("reggae") || text.includes("hip-hop")) return "Funk / Soul";
+      if (text.includes("world") || text.includes("indian")) return "World";
+      if (text.includes("pop")) return "Pop";
+      if (text.includes("rock") || text.includes("jam")) return "Rock";
+      return "Rock";
+    }
+
+    function matchesEvent(event) {
+      const haystack = [event.artist, event.venue, event.city, event.genre, displayGenre(event), event.description].join(" ").toLowerCase();
+      const queryOk = !state.query || haystack.includes(state.query.toLowerCase());
+      const venueOk = state.venue === "All" || event.venue === state.venue;
+      const genreOk = state.genre === "All" || displayGenre(event) === state.genre;
+      return queryOk && venueOk && genreOk;
+    }
+
+    function getFilteredEvents() {
+      return events
+        .filter(event => {
+          const eventDate = parseDate(event.date);
+          return eventDate >= startDate && eventDate <= endDate;
+        })
+        .filter(matchesEvent)
+        .sort((a, b) => a.date.localeCompare(b.date) || a.artist.localeCompare(b.artist));
+    }
+
+    function populateFilters() {
+      const venuesByCity = events.reduce((acc, event) => {
+        acc[event.city] ||= new Set();
+        acc[event.city].add(event.venue);
+        return acc;
+      }, {});
+      const genres = ["All", ...new Set(events.map(event => displayGenre(event)).sort())];
+      const venueGroups = Object.entries(venuesByCity)
+        .sort(([cityA], [cityB]) => cityA.localeCompare(cityB))
+        .map(([city, venueSet]) => {
+          const options = [...venueSet]
+            .sort((venueA, venueB) => venueA.localeCompare(venueB))
+            .map(venue => `<option value="${escapeHtml(venue)}">${escapeHtml(venue)}</option>`)
+            .join("");
+          return `<optgroup label="${escapeHtml(city)}">${options}</optgroup>`;
+        })
+        .join("");
+      els.venue.innerHTML = `<option value="All">All venues</option>${venueGroups}`;
+      els.genre.innerHTML = genres.map(item => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`).join("");
+    }
+
+    function buildMonths() {
+      const months = [];
+      const cursor = new Date(startDate.getFullYear(), startDate.getMonth(), 1, 12);
+      const last = new Date(endDate.getFullYear(), endDate.getMonth(), 1, 12);
+      while (cursor <= last) {
+        months.push(new Date(cursor));
+        cursor.setMonth(cursor.getMonth() + 1);
+      }
+      return months;
+    }
+
+    function renderCalendar(filtered) {
+      const eventsByDate = filtered.reduce((acc, event) => {
+        acc[event.date] ||= [];
+        acc[event.date].push(event);
+        return acc;
+      }, {});
+
+      els.calendar.innerHTML = buildMonths().map(monthDate => {
+        const year = monthDate.getFullYear();
+        const month = monthDate.getMonth();
+        const first = new Date(year, month, 1, 12);
+        const lastDay = new Date(year, month + 1, 0, 12).getDate();
+        const leading = first.getDay();
+        const monthEvents = filtered.filter(event => {
+          const d = parseDate(event.date);
+          return d.getFullYear() === year && d.getMonth() === month;
+        });
+
+        const dayCells = [];
+        for (let i = 0; i < leading; i += 1) {
+          dayCells.push('<div class="day empty" aria-hidden="true"></div>');
+        }
+        for (let day = 1; day <= lastDay; day += 1) {
+          const d = new Date(year, month, day, 12);
+          const key = dateKey(d);
+          const dayEvents = eventsByDate[key] || [];
+          const isToday = key === todayKey;
+          const dayClass = d < startDate ? "day past-day" : "day";
+          const chips = dayEvents.map(event => `
+            <button class="event-chip" type="button" data-event-id="${escapeHtml(event.id)}">
+              <span class="chip-name">${escapeHtml(event.artist)}</span>
+              <span class="chip-meta">${escapeHtml(displayGenre(event))}</span>
+              <span class="chip-meta location-strong">${escapeHtml(event.venue)} · ${escapeHtml(event.city)}</span>
+            </button>
+          `).join("");
+
+          dayCells.push(`
+            <div class="${dayClass}">
+              <div class="date-num">
+                <span>${day}</span>
+                ${isToday ? '<span class="today-mark">Today</span>' : ""}
+              </div>
+              ${chips}
+            </div>
+          `);
+        }
+
+        return `
+          <article class="month">
+            <div class="month-title">
+              <h2>${monthFormatter.format(monthDate)}</h2>
+              <span class="month-count">${monthEvents.length} event${monthEvents.length === 1 ? "" : "s"}</span>
+            </div>
+            <div class="weekdays" aria-hidden="true">
+              ${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(day => `<div class="weekday">${day}</div>`).join("")}
+            </div>
+            <div class="days">${dayCells.join("")}</div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderList(filtered) {
+      els.eventList.innerHTML = filtered.length ? filtered.map(event => {
+        const d = parseDate(event.date);
+        return `
+          <article class="event-card">
+            <div class="date-block">
+              <span class="month-abbr">${monthAbbrFormatter.format(d)}</span>
+              <span class="day-num">${d.getDate()}</span>
+            </div>
+            <div>
+              <span class="tag">${escapeHtml(displayGenre(event))}</span>
+              <h3>${escapeHtml(event.artist)}</h3>
+              <div class="meta-row">
+                <span>${escapeHtml(formatter.format(d))}</span>
+                <span>${escapeHtml(event.time)}</span>
+                <span class="location-strong">${escapeHtml(event.city)}</span>
+                <span class="location-strong">${escapeHtml(event.location)}</span>
+              </div>
+              <p class="small">${escapeHtml(event.description)}</p>
+            </div>
+            <div class="event-actions">
+              <button class="btn primary" type="button" data-event-id="${escapeHtml(event.id)}">Details</button>
+            </div>
+          </article>
+        `;
+      }).join("") : '<div class="empty-state">No events match the current filters.</div>';
+    }
+
+    function renderSidebar(filtered) {
+      els.upcomingList.innerHTML = filtered.slice(0, 5).map(event => {
+        const d = parseDate(event.date);
+        return `
+          <li class="upcoming-item">
+            <span class="upcoming-name">${escapeHtml(event.artist)}</span>
+            <span class="small">${escapeHtml(formatter.format(d))} · ${escapeHtml(displayGenre(event))}</span>
+            <span class="small location-strong">${escapeHtml(event.city)} · ${escapeHtml(event.location)}</span>
+          </li>
+        `;
+      }).join("") || '<li class="upcoming-item"><span class="small">No matching events.</span></li>';
+
+      const genreCounts = filtered.reduce((acc, event) => {
+        const genre = displayGenre(event);
+        acc[genre] = (acc[genre] || 0) + 1;
+        return acc;
+      }, {});
+      els.genreMix.innerHTML = Object.entries(genreCounts)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .slice(0, 8)
+        .map(([genre, count]) => `
+          <div class="source-item">
+            <span class="source-name">${escapeHtml(genre)}</span>
+            <span class="small">${count} event${count === 1 ? "" : "s"}</span>
+          </div>
+        `).join("") || '<div class="small">No matching genre data.</div>';
+    }
+
+    function renderStaticSidebars() {
+      els.coverageList.innerHTML = sourceCoverage.map(item => `
+        <li class="coverage-item">
+          <span class="coverage-name">${escapeHtml(item.name)}</span>
+          <span class="status ${item.status.toLowerCase()}">${escapeHtml(item.status)}</span>
+          <span class="small">${escapeHtml(item.note)}</span>
+        </li>
+      `).join("");
+
+      els.sourceList.innerHTML = sourceLinks.map(([name, url]) => `
+        <li class="source-item">
+          <a class="source-name" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(name)}</a>
+          <span class="small">${escapeHtml(url)}</span>
+        </li>
+      `).join("");
+    }
+
+    function render() {
+      const filtered = getFilteredEvents();
+      const upcomingEvents = events.filter(event => {
+        const eventDate = parseDate(event.date);
+        return eventDate >= startDate && eventDate <= endDate;
+      });
+      const upcomingVenues = new Set(upcomingEvents.map(event => event.venue));
+      els.eventCount.textContent = String(upcomingEvents.length);
+      els.venueCount.textContent = String(upcomingVenues.size);
+      els.resultsTitle.textContent = filtered.length === upcomingEvents.length ? "All upcoming events" : "Filtered events";
+      els.resultsMeta.textContent = `${filtered.length} of ${upcomingEvents.length} upcoming events shown`;
+      renderCalendar(filtered);
+      renderList(filtered);
+      renderSidebar(filtered);
+      document.body.dataset.view = state.view;
+      els.calendar.style.display = state.view === "calendar" ? "grid" : "none";
+      els.listView.style.display = state.view === "list" ? "block" : "none";
+      els.calendarBtn.classList.toggle("active", state.view === "calendar");
+      els.listBtn.classList.toggle("active", state.view === "list");
+    }
+
+    function openModal(id) {
+      const event = events.find(item => item.id === id);
+      if (!event) return;
+      const d = parseDate(event.date);
+      els.modalGenre.textContent = displayGenre(event);
+      els.modalTitle.textContent = event.artist;
+      els.modalMeta.innerHTML = `
+        <span>${escapeHtml(formatter.format(d))}</span>
+        <span class="location-strong">${escapeHtml(event.city)} · ${escapeHtml(event.location)}</span>
+      `;
+      els.modalVenue.textContent = event.venue;
+      els.modalTime.textContent = event.time;
+      els.modalLocation.textContent = event.location;
+      els.modalSource.textContent = event.source;
+      els.modalDescription.textContent = event.description;
+      els.modalSourceLink.href = event.url;
+      els.modalBackdrop.style.display = "flex";
+      els.closeModalBtn.focus();
+    }
+
+    function closeModal() {
+      els.modalBackdrop.style.display = "none";
+    }
+
+    function bindEvents() {
+      els.search.addEventListener("input", event => {
+        state.query = event.target.value.trim();
+        render();
+      });
+      els.venue.addEventListener("change", event => {
+        state.venue = event.target.value;
+        render();
+      });
+      els.genre.addEventListener("change", event => {
+        state.genre = event.target.value;
+        render();
+      });
+      els.calendarBtn.addEventListener("click", () => {
+        state.view = "calendar";
+        render();
+      });
+      els.listBtn.addEventListener("click", () => {
+        state.view = "list";
+        render();
+      });
+      els.resetBtn.addEventListener("click", () => {
+        state.query = "";
+        state.venue = "All";
+        state.genre = "All";
+        els.search.value = "";
+        els.venue.value = "All";
+        els.genre.value = "All";
+        render();
+      });
+      document.addEventListener("click", event => {
+        const trigger = event.target.closest("[data-event-id]");
+        if (trigger) openModal(trigger.dataset.eventId);
+      });
+      els.closeModalBtn.addEventListener("click", closeModal);
+      els.modalBackdrop.addEventListener("click", event => {
+        if (event.target === els.modalBackdrop) closeModal();
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") closeModal();
+      });
+    }
+
+    populateFilters();
+    renderStaticSidebars();
+    bindEvents();
+    render();
+  </script>
+</body>
+</html>
