@@ -1218,6 +1218,16 @@
         name: "The Livery",
         status: "Loaded",
         note: "Future live-music listings were extracted from The Livery's PDF schedule linked from its live-music page."
+      },
+      {
+        name: "Four Winds New Buffalo",
+        status: "Loaded",
+        note: "Only live-music concerts at the Silver Creek Event Center were added; comedy, magic, and game-show events were skipped."
+      },
+      {
+        name: "newbuffalo.com Events",
+        status: "Loaded",
+        note: "Live-music events only from the New Buffalo Michigan Travel Guide events feed. Silver Creek shows were deduplicated against Four Winds; other non-music listings (yard sales, arts fairs) were skipped."
       }
     ];
 
@@ -1237,7 +1247,9 @@
       ["The Acorn", "https://www.acornlive.org/get-tickets/"],
       ["SideYard Sawyer", "https://www.sideyardsawyer.com/events"],
       ["RyeBelles Instagram", "https://www.instagram.com/ryebelles/"],
-      ["The Livery", "https://www.liverybrew.com/live-music"]
+      ["The Livery", "https://www.liverybrew.com/live-music"],
+      ["Four Winds New Buffalo", "https://fourwindscasino.com/newbuffalo/entertainment/event-calendar/"],
+      ["newbuffalo.com Events", "https://www.newbuffalo.com/events/"]
     ];
 
     const scrapedEvents = [
@@ -3006,6 +3018,363 @@
         description: "Live music at Dablon Winery. Matt Gabriel is a Grand Rapids singer-songwriter performing folk and Americana.",
         source: "Dablon event list",
         url: "https://dablon.com/event/live-music-with-matt-gabriel-42/"
+      },
+      {
+        id: "dablon-chris-burch-2026-10-11",
+        date: "2026-10-11",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Chris Burch",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Dablon Winery. Chris Burch is an alternative rock influenced artist with sharp songwriting and raw vocals.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-chris-burch-80/"
+      },
+      {
+        id: "dablon-shanneen-2026-10-18",
+        date: "2026-10-18",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Shanneen",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Dablon Winery. Shanneen performs acoustic sets in the tasting room.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-shanneen-2/"
+      },
+      {
+        id: "dablon-chris-burch-2026-10-25",
+        date: "2026-10-25",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Chris Burch",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Dablon Winery. Chris Burch is an alternative rock influenced artist with sharp songwriting and raw vocals.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-chris-burch-81/"
+      },
+      {
+        id: "dablon-edd-skorjal-2026-11-01",
+        date: "2026-11-01",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Edd Skorjal",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Dablon Winery. Edd Skorjal has played drums and percussion for over fifty years and performs on his own musical path.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-edd-skorjal-3/"
+      },
+      {
+        id: "dablon-chris-burch-2026-11-08",
+        date: "2026-11-08",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Chris Burch",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Rock",
+        description: "Live music at Dablon Winery. Chris Burch is an alternative rock influenced artist with sharp songwriting and raw vocals.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-chris-burch-82/"
+      },
+      {
+        id: "dablon-timothy-velez-2026-11-15",
+        date: "2026-11-15",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Timothy Velez",
+        venue: "Dablon Winery",
+        city: "Baroda",
+        location: "Dablon Vineyards & Winery, Baroda, MI",
+        genre: "Acoustic",
+        description: "Live music at Dablon Winery. Timothy Velez is a South Bend singer-songwriter performing acoustic sets.",
+        source: "Dablon event list",
+        url: "https://dablon.com/event/live-music-with-timothy-velez-3/"
+      }
+    ];
+
+    const fourWindsMusicEvents = [
+      {
+        id: "fourwinds-mike-campbell-2026-07-17",
+        date: "2026-07-17",
+        time: "8:00 PM ET",
+        artist: "Mike Campbell & The Dirty Knobs",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "Rock",
+        description: "Legendary Heartbreakers guitarist Mike Campbell brings his roots-rock band The Dirty Knobs to the Silver Creek Event Center.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/event/040064659D8472EF"
+      },
+      {
+        id: "fourwinds-chris-botti-2026-07-24",
+        date: "2026-07-24",
+        time: "8:00 PM ET",
+        artist: "Chris Botti",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "Jazz",
+        description: "Grammy-winning trumpeter Chris Botti performs contemporary jazz standards and originals at Silver Creek Event Center.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/chris-botti-new-buffalo-michigan-07-24-2026/event/0400643BBF81829B"
+      },
+      {
+        id: "fourwinds-get-the-led-out-2026-08-14",
+        date: "2026-08-14",
+        time: "9:00 PM ET",
+        artist: "Get The Led Out",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "Tribute",
+        description: "The American Led Zeppelin — Get The Led Out — delivers a note-for-note tribute to the mighty Zep.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/get-the-led-out-new-buffalo-michigan-08-14-2026/event/04006444B28367CF"
+      },
+      {
+        id: "fourwinds-happy-together-2026-08-21",
+        date: "2026-08-21",
+        time: "9:00 PM ET",
+        artist: "Happy Together Tour",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "Pop",
+        description: "The Happy Together Tour brings together 60s/70s hitmakers including The Turtles, Jay & The Americans, The Association, Badfinger and more.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/event/04006464DA13C6F2"
+      },
+      {
+        id: "fourwinds-australian-pink-floyd-2026-08-22",
+        date: "2026-08-22",
+        time: "9:00 PM ET",
+        artist: "The Australian Pink Floyd Show",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "Tribute",
+        description: "The world's leading Pink Floyd tribute band recreates the Floyd's classic albums with full production.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/event/04006443C54E7141"
+      },
+      {
+        id: "fourwinds-dogstar-2026-08-28",
+        date: "2026-08-28",
+        time: "9:00 PM ET",
+        artist: "Dogstar (with The Backfire)",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "Rock",
+        description: "Keanu Reeves' alternative rock band Dogstar returns with the All In Now tour, joined by special guests The Backfire.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/dogstar-all-in-now-tour-new-buffalo-michigan-08-28-2026/event/04006463A7096C0B"
+      },
+      {
+        id: "fourwinds-roger-daltrey-2026-09-11",
+        date: "2026-09-11",
+        time: "8:00 PM ET",
+        artist: "Roger Daltrey (with Jeffrey Gaines)",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "Rock",
+        description: "The legendary voice of The Who — Roger Daltrey — headlines A Great Night Out with special guest Jeffrey Gaines.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/roger-daltrey-a-great-night-out-new-buffalo-michigan-09-11-2026/event/040064A5A5268089"
+      },
+      {
+        id: "fourwinds-joe-2026-09-26",
+        date: "2026-09-26",
+        time: "9:00 PM ET",
+        artist: "Joe",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "R&B",
+        description: "R&B superstar Joe performs his catalog of chart-topping hits at Silver Creek Event Center.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/event/0400647884D72BA6"
+      },
+      {
+        id: "fourwinds-temptations-four-tops-2026-10-09",
+        date: "2026-10-09",
+        time: "8:00 PM ET",
+        artist: "The Temptations & The Four Tops",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "Motown",
+        description: "Two of Motown's greatest groups — The Temptations and The Four Tops — share the stage for a night of soul classics.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/the-temptations-the-four-tops-new-buffalo-michigan-10-09-2026/event/04006479C8C0AC19"
+      },
+      {
+        id: "fourwinds-kenny-wayne-shepherd-2026-10-16",
+        date: "2026-10-16",
+        time: "9:00 PM ET",
+        artist: "Kenny Wayne Shepherd",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "Blues",
+        description: "Grammy-nominated blues-rock guitarist Kenny Wayne Shepherd performs signature songs and new material.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/kenny-wayne-shepherd-new-buffalo-michigan-10-16-2026/event/04006491D3ADBA1D"
+      },
+      {
+        id: "fourwinds-cirque-musica-2026-12-12",
+        date: "2026-12-12",
+        time: "8:00 PM ET",
+        artist: "Cirque Musica Holiday Wonderland",
+        venue: "Four Winds New Buffalo",
+        city: "New Buffalo",
+        location: "Silver Creek Event Center, Four Winds Casino Resort, 11111 Wilson Rd, New Buffalo, MI",
+        genre: "Special Event",
+        description: "Cirque Musica combines world-class cirque performers with holiday music performed live.",
+        source: "Four Winds event calendar",
+        url: "https://www.ticketmaster.com/cirque-musica-holiday-wonderland-new-buffalo-michigan-12-12-2026/event/040064E8A92EB6FB"
+      }
+    ];
+
+    const newBuffaloMusicEvents = [
+      {
+        id: "nbtp-whateverly-2026-07-15",
+        date: "2026-07-15",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Whateverly Brothers",
+        venue: "New Buffalo Music in the Park",
+        city: "New Buffalo",
+        location: "Band Shell, New Buffalo Township Memorial Park, New Buffalo, MI",
+        genre: "Folk / Americana",
+        description: "Free Wednesday-night Music in the Park at the New Buffalo Township Band Shell. Whateverly Brothers perform folk/Americana harmonies.",
+        source: "newbuffalo.com events",
+        url: "https://www.newbuffalo.com/event/music-in-the-park-whateverly-brothers/"
+      },
+      {
+        id: "nbtp-van-dyke-2026-07-22",
+        date: "2026-07-22",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Van Dyke Revue",
+        venue: "New Buffalo Music in the Park",
+        city: "New Buffalo",
+        location: "Band Shell, New Buffalo Township Memorial Park, New Buffalo, MI",
+        genre: "Rock",
+        description: "Free Music in the Park at the New Buffalo Township Band Shell. The Van Dyke Revue is a horn-driven classic-rock and R&B band from Michigan.",
+        source: "newbuffalo.com events",
+        url: "https://www.newbuffalo.com/event/music-in-the-park-van-dyke-revue/"
+      },
+      {
+        id: "nbtp-chicken-dolphin-2026-07-29",
+        date: "2026-07-29",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Chicken Dolphin",
+        venue: "New Buffalo Music in the Park",
+        city: "New Buffalo",
+        location: "Band Shell, New Buffalo Township Memorial Park, New Buffalo, MI",
+        genre: "Rock",
+        description: "Free Music in the Park at the New Buffalo Township Band Shell. Chicken Dolphin plays a mix of rock and Americana covers and originals.",
+        source: "newbuffalo.com events",
+        url: "https://www.newbuffalo.com/event/music-in-the-park-chicken-dolphin/"
+      },
+      {
+        id: "nbtp-pamela-rocha-2026-08-05",
+        date: "2026-08-05",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Pamela Rocha Trio",
+        venue: "New Buffalo Music in the Park",
+        city: "New Buffalo",
+        location: "Band Shell, New Buffalo Township Memorial Park, New Buffalo, MI",
+        genre: "Jazz",
+        description: "Free Music in the Park at the New Buffalo Township Band Shell. Chicago-based vocalist Pamela Rocha brings her jazz trio.",
+        source: "newbuffalo.com events",
+        url: "https://www.newbuffalo.com/event/music-in-the-park-pamela-rocha-trio/"
+      },
+      {
+        id: "ship-shore-day1-2026-08-08",
+        date: "2026-08-08",
+        time: "11:00 AM ET",
+        artist: "Ship & Shore Blues & Soul Music Festival (Day 1)",
+        venue: "Ship & Shore Blues & Soul Fest",
+        city: "New Buffalo",
+        location: "Lions Park, New Buffalo, MI",
+        genre: "Blues",
+        description: "Day 1 of the Ship & Shore Blues & Soul Music Festival at Lions Park in downtown New Buffalo — a full day of live blues and soul on the shore.",
+        source: "newbuffalo.com events",
+        url: "https://www.newbuffalo.com/event/ship-and-shore-blues-soul-music-festival-day-1/"
+      },
+      {
+        id: "ship-shore-day2-2026-08-09",
+        date: "2026-08-09",
+        time: "11:00 AM ET",
+        artist: "Ship & Shore Blues & Soul Music Festival (Day 2)",
+        venue: "Ship & Shore Blues & Soul Fest",
+        city: "New Buffalo",
+        location: "Lions Park, New Buffalo, MI",
+        genre: "Blues",
+        description: "Day 2 of the Ship & Shore Blues & Soul Music Festival at Lions Park in downtown New Buffalo.",
+        source: "newbuffalo.com events",
+        url: "https://www.newbuffalo.com/event/ship-and-shore-blues-soul-music-festival-day-2/"
+      },
+      {
+        id: "nbtp-hipposonics-2026-08-12",
+        date: "2026-08-12",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Hipposonics",
+        venue: "New Buffalo Music in the Park",
+        city: "New Buffalo",
+        location: "Band Shell, New Buffalo Township Memorial Park, New Buffalo, MI",
+        genre: "Funk / Soul",
+        description: "Free Music in the Park at the New Buffalo Township Band Shell. Hipposonics deliver a funk, soul, and dance-floor groove.",
+        source: "newbuffalo.com events",
+        url: "https://www.newbuffalo.com/event/music-in-the-park-hipposonics/"
+      },
+      {
+        id: "nbtp-classic-moments-2026-08-19",
+        date: "2026-08-19",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Classic Moments Band",
+        venue: "New Buffalo Music in the Park",
+        city: "New Buffalo",
+        location: "Band Shell, New Buffalo Township Memorial Park, New Buffalo, MI",
+        genre: "Rock",
+        description: "Free Music in the Park at the New Buffalo Township Band Shell. Classic Moments Band plays a lineup of classic rock and pop hits.",
+        source: "newbuffalo.com events",
+        url: "https://www.newbuffalo.com/event/music-in-the-park-classic-moments-band/"
+      },
+      {
+        id: "nbtp-weko-boys-2026-08-26",
+        date: "2026-08-26",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Weko Boys",
+        venue: "New Buffalo Music in the Park",
+        city: "New Buffalo",
+        location: "Band Shell, New Buffalo Township Memorial Park, New Buffalo, MI",
+        genre: "Rock",
+        description: "Free Music in the Park at the New Buffalo Township Band Shell. The Weko Boys are a local favorite covering rock, country and Americana.",
+        source: "newbuffalo.com events",
+        url: "https://www.newbuffalo.com/event/music-in-the-park-weko-boys/"
+      },
+      {
+        id: "nbtp-hired-hands-2026-09-02",
+        date: "2026-09-02",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Hired Hands",
+        venue: "New Buffalo Music in the Park",
+        city: "New Buffalo",
+        location: "Band Shell, New Buffalo Township Memorial Park, New Buffalo, MI",
+        genre: "Country",
+        description: "Free Music in the Park at the New Buffalo Township Band Shell — season finale with the country/Americana group Hired Hands.",
+        source: "newbuffalo.com events",
+        url: "https://www.newbuffalo.com/event/music-in-the-park-hired-hands/"
       }
     ];
 
@@ -3987,7 +4356,9 @@
       ...gravityMusicEvents,
       ...twelveCornersMusicEvents,
       ...buchananCommonMusicEvents,
-      ...riverSaintJoeMusicEvents
+      ...riverSaintJoeMusicEvents,
+      ...fourWindsMusicEvents,
+      ...newBuffaloMusicEvents
     ];
 
     const state = {
