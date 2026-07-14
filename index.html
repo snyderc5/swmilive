@@ -1228,6 +1228,41 @@
         name: "newbuffalo.com Events",
         status: "Loaded",
         note: "Live-music events only from the New Buffalo Michigan Travel Guide events feed. Silver Creek shows were deduplicated against Four Winds; other non-music listings (yard sales, arts fairs) were skipped."
+      },
+      {
+        name: "Journeyman Distillery",
+        status: "Loaded",
+        note: "Only Three Oaks, MI live-music events were added; Valparaiso, IN events, comedy nights, festivals, and markets were skipped."
+      },
+      {
+        name: "Box Factory for the Arts",
+        status: "Loaded",
+        note: "Only concert events on the Main Stage were added; weekly Out of the Box Open Mic Nights were skipped per site owner preference."
+      },
+      {
+        name: "Domaine Berrien Cellars",
+        status: "Loaded",
+        note: "Live music events were added from Domaine Berrien's events page; craft nights and non-music events were skipped."
+      },
+      {
+        name: "Filkins Vineyards",
+        status: "Loaded",
+        note: "Live band events were added from Filkins Vineyards' upcoming events page; paint & sip, jewelry, and wine club events were skipped."
+      },
+      {
+        name: "Weko Beach Summer Concerts",
+        status: "Loaded",
+        note: "2026 Sunday concert series lineup was read from the City of Bridgman's Summer Concerts poster."
+      },
+      {
+        name: "Tabor Hill Winery",
+        status: "Skipped",
+        note: "Tabor Hill's Live Music Sundays PDF on their site shows day-of-week alignments (Sunday, May 29; Sunday, July 3) that match a prior year, not 2026 — the PDF appears stale and was not imported."
+      },
+      {
+        name: "St. Julian Union Pier",
+        status: "Loaded",
+        note: "St. Julian's Union Pier tasting room currently has no upcoming live music events posted on their events page."
       }
     ];
 
@@ -1249,7 +1284,13 @@
       ["RyeBelles Instagram", "https://www.instagram.com/ryebelles/"],
       ["The Livery", "https://www.liverybrew.com/live-music"],
       ["Four Winds New Buffalo", "https://fourwindscasino.com/newbuffalo/entertainment/event-calendar/"],
-      ["newbuffalo.com Events", "https://www.newbuffalo.com/events/"]
+      ["newbuffalo.com Events", "https://www.newbuffalo.com/events/"],
+      ["Journeyman Distillery", "https://www.journeyman.com/events/"],
+      ["Box Factory for the Arts", "https://boxfactoryforthearts.org/venue/box-factory-for-the-arts-main-stage/"],
+      ["Domaine Berrien Cellars", "https://www.domaineberrien.com/events"],
+      ["Filkins Vineyards", "https://filkinsvineyards.com/upcoming-events/"],
+      ["Weko Beach Summer Concerts", "https://www.bridgman.org/DocumentCenter/View/2919/Summer-Concerts"],
+      ["St. Julian Union Pier", "https://www.stjulian.com/events/l/union-pier/t/live-music"]
     ];
 
     const scrapedEvents = [
@@ -3378,6 +3419,411 @@
       }
     ];
 
+    const journeymanMusicEvents = [
+      {
+        id: "journeyman-live-music-2026-07-15",
+        date: "2026-07-15",
+        time: "6:00 PM-8:00 PM ET",
+        artist: "Live Music at Journeyman",
+        venue: "Journeyman Distillery",
+        city: "Three Oaks",
+        location: "Journeyman Distillery, Featherbone Factory, 109 Generation Dr, Three Oaks, MI",
+        genre: "Acoustic",
+        description: "Wednesday-evening live music in the Journeyman Distillery Silo Market + Social area.",
+        source: "Journeyman events page",
+        url: "https://www.journeyman.com/events/"
+      }
+    ];
+
+    const boxFactoryMusicEvents = [
+      {
+        id: "boxfactory-langford-lads-2026-07-25",
+        date: "2026-07-25",
+        time: "7:00 PM ET",
+        artist: "Langford Lads",
+        venue: "Box Factory for the Arts",
+        city: "St. Joseph",
+        location: "Main Stage, Box Factory for the Arts, 1101 Broad St, St. Joseph, MI",
+        genre: "Folk / Americana",
+        description: "The Langford Lads perform an evening concert on the Box Factory Main Stage.",
+        source: "Box Factory events",
+        url: "https://boxfactoryforthearts.org/event/langford-lads-concert/"
+      },
+      {
+        id: "boxfactory-dame-denise-2026-08-01",
+        date: "2026-08-01",
+        time: "7:00 PM ET",
+        artist: "Dame and Denise",
+        venue: "Box Factory for the Arts",
+        city: "St. Joseph",
+        location: "Main Stage, Box Factory for the Arts, 1101 Broad St, St. Joseph, MI",
+        genre: "Cabaret",
+        description: "Elaine Dame and Denise McGowan Tracy — Together Again for The First Time! — a jazz and cabaret duo evening.",
+        source: "Box Factory events",
+        url: "https://boxfactoryforthearts.org/event/denise-mcgowan-tracy-and-elaine-dame-concert/"
+      },
+      {
+        id: "boxfactory-abbie-thomas-2026-08-15",
+        date: "2026-08-15",
+        time: "7:00 PM ET",
+        artist: "Abbie Thomas & The Crazy Hearts",
+        venue: "Box Factory for the Arts",
+        city: "St. Joseph",
+        location: "Main Stage, Box Factory for the Arts, 1101 Broad St, St. Joseph, MI",
+        genre: "Rock",
+        description: "Michigan singer-songwriter Abbie Thomas with her band The Crazy Hearts on the Box Factory Main Stage.",
+        source: "Box Factory events",
+        url: "https://boxfactoryforthearts.org/event/abbie-thomas-the-crazy-hearts/"
+      }
+    ];
+
+    const domaineBerrienMusicEvents = [
+      {
+        id: "domaine-two-girls-hat-2026-07-19",
+        date: "2026-07-19",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Two Girls in a Hat",
+        venue: "Domaine Berrien Cellars",
+        city: "Berrien Springs",
+        location: "Domaine Berrien Cellars, 398 E Lemon Creek Rd, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Unwind in the Vines — live music in the backyard at Domaine Berrien Cellars. Free admission, family- and dog-friendly.",
+        source: "Domaine Berrien events page",
+        url: "https://www.domaineberrien.com/events"
+      },
+      {
+        id: "domaine-art-wine-music-fest-2026-07-25",
+        date: "2026-07-25",
+        time: "11:00 AM-7:00 PM ET",
+        artist: "20th Annual Art, Wine & Music Festival",
+        venue: "Domaine Berrien Cellars",
+        city: "Berrien Springs",
+        location: "Domaine Berrien Cellars, 398 E Lemon Creek Rd, Berrien Springs, MI",
+        genre: "Special Event",
+        description: "The 20th anniversary of Domaine Berrien's Art, Wine & Music Festival with live music, food, and 25 local and regional artists.",
+        source: "Domaine Berrien events page",
+        url: "https://www.domaineberrien.com/events"
+      }
+    ];
+
+    const filkinsMusicEvents = [
+      {
+        id: "filkins-plan-b-2026-07-18",
+        date: "2026-07-18",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Plan B Band",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Rock",
+        description: "Free live music at Filkins Vineyards with Plan B Band; Smokin Oak food truck on site.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-neon-crows-2026-07-25",
+        date: "2026-07-25",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Neon Crows Band",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Rock",
+        description: "Free live music at Filkins Vineyards with Neon Crows Band; Kingstreet food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-nashville-electric-2026-08-01",
+        date: "2026-08-01",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Nashville Electric Company Band",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Country",
+        description: "Live music at Filkins Vineyards with Nashville Electric Company Band; Motor Mouth food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-brandon-ward-2026-08-08",
+        date: "2026-08-08",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Brandon Ward",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Country",
+        description: "Free live music at Filkins Vineyards with Brandon Ward.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-pablos-great-revenge-2026-08-15",
+        date: "2026-08-15",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Pablos Great Revenge",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Rock",
+        description: "Free live music at Filkins Vineyards with Pablos Great Revenge.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-kody-bryant-2026-08-22",
+        date: "2026-08-22",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Kody Bryant",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Country",
+        description: "Free live music at Filkins Vineyards with Kody Bryant.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-my-weekend-crush-2026-08-29",
+        date: "2026-08-29",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "My Weekend Crush Band",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Rock",
+        description: "Free live music at Filkins Vineyards with My Weekend Crush Band; Patriot Pizza food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-elvis-tribute-2026-09-04",
+        date: "2026-09-04",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Elvis Tribute Artist",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Tribute",
+        description: "Free Elvis Tribute Artist show at Filkins Vineyards; PAC Pizza food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-cowboy-country-2026-09-05",
+        date: "2026-09-05",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Cowboy Country Music Show",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Country",
+        description: "Free Cowboy Country Music Show at Filkins Vineyards; Munchie Man food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-plan-b-fortunate-sons-2026-09-06",
+        date: "2026-09-06",
+        time: "1:00 PM-7:30 PM ET",
+        artist: "Plan B Band + Fortunate Sons Band",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Rock",
+        description: "Double bill at Filkins Vineyards — Plan B Band 1–4pm, Fortunate Sons Band (CCR tribute) 5:30–7:30pm — with food trucks all day.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-cowboy-country-2026-09-12",
+        date: "2026-09-12",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Cowboy Country Music Show",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Country",
+        description: "Free Cowboy Country Music Show at Filkins Vineyards; Kingstreet food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-pablos-great-revenge-2026-09-19",
+        date: "2026-09-19",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Pablos Great Revenge Band",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Rock",
+        description: "Live music at Filkins Vineyards with Pablos Great Revenge Band; Cousins Maine Lobster food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-brandon-ward-2026-10-03",
+        date: "2026-10-03",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Brandon Ward",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Country",
+        description: "Live music at Filkins Vineyards with Brandon Ward; PAC Pizza food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-my-weekend-crush-2026-10-10",
+        date: "2026-10-10",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "My Weekend Crush Band",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Rock",
+        description: "Free live music at Filkins Vineyards with My Weekend Crush Band; Patriot Pizza food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-nashville-electric-2026-10-17",
+        date: "2026-10-17",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Nashville Electric Company Band",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Country",
+        description: "Live music at Filkins Vineyards with Nashville Electric Company Band; Cousins Maine Lobster food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-neon-crows-2026-10-24",
+        date: "2026-10-24",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Neon Crows Band",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Rock",
+        description: "Free live music at Filkins Vineyards with Neon Crows Band; Smokin Oak food truck.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-kody-bryant-2026-11-14",
+        date: "2026-11-14",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Kody Bryant",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Country",
+        description: "Free live music at Filkins Vineyards with Kody Bryant.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-acoustic-holiday-kody-2026-12-05",
+        date: "2026-12-05",
+        time: "3:00 PM-6:00 PM ET",
+        artist: "Acoustic Holiday Music with Kody Bryant",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Acoustic",
+        description: "Free acoustic holiday music at Filkins Vineyards with Kody Bryant.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      },
+      {
+        id: "filkins-acoustic-holiday-2026-12-12",
+        date: "2026-12-12",
+        time: "1:00 PM-4:00 PM ET",
+        artist: "Acoustic Holiday Music",
+        venue: "Filkins Vineyards",
+        city: "Coloma",
+        location: "Filkins Vineyards, 6991 Ryno Rd, Coloma, MI",
+        genre: "Acoustic",
+        description: "Acoustic holiday music at Filkins Vineyards with Cousins Maine Lobster food truck on site.",
+        source: "Filkins Vineyards events",
+        url: "https://filkinsvineyards.com/upcoming-events/"
+      }
+    ];
+
+    const wekoBeachMusicEvents = [
+      {
+        id: "weko-blue-eyed-soul-2026-07-19",
+        date: "2026-07-19",
+        time: "7:00 PM ET",
+        artist: "Blue-Eyed Soul",
+        venue: "Weko Beach Summer Concerts",
+        city: "Bridgman",
+        location: "Weko Beach, Bridgman, MI",
+        genre: "Funk / Soul",
+        description: "Free Sunday-evening summer concert at Weko Beach with Blue-Eyed Soul. Free admission and parking (first come, first served).",
+        source: "Bridgman Weko Beach Summer Concerts 2026 poster",
+        url: "https://www.bridgman.org/DocumentCenter/View/2919/Summer-Concerts"
+      },
+      {
+        id: "weko-vickie-page-2026-08-02",
+        date: "2026-08-02",
+        time: "7:00 PM ET",
+        artist: "The Vickie Page Band",
+        venue: "Weko Beach Summer Concerts",
+        city: "Bridgman",
+        location: "Weko Beach, Bridgman, MI",
+        genre: "Rock",
+        description: "Free Sunday-evening summer concert at Weko Beach with The Vickie Page Band.",
+        source: "Bridgman Weko Beach Summer Concerts 2026 poster",
+        url: "https://www.bridgman.org/DocumentCenter/View/2919/Summer-Concerts"
+      },
+      {
+        id: "weko-genna-jesse-2026-08-16",
+        date: "2026-08-16",
+        time: "7:00 PM ET",
+        artist: "Genna & Jesse",
+        venue: "Weko Beach Summer Concerts",
+        city: "Bridgman",
+        location: "Weko Beach, Bridgman, MI",
+        genre: "Folk / Americana",
+        description: "Free Sunday-evening summer concert at Weko Beach with Genna & Jesse.",
+        source: "Bridgman Weko Beach Summer Concerts 2026 poster",
+        url: "https://www.bridgman.org/DocumentCenter/View/2919/Summer-Concerts"
+      },
+      {
+        id: "weko-blue-shoes-2026-08-30",
+        date: "2026-08-30",
+        time: "6:00 PM ET",
+        artist: "Blue Shoes",
+        venue: "Weko Beach Summer Concerts",
+        city: "Bridgman",
+        location: "Weko Beach, Bridgman, MI",
+        genre: "Blues",
+        description: "Free Sunday-evening summer concert at Weko Beach with Blue Shoes.",
+        source: "Bridgman Weko Beach Summer Concerts 2026 poster",
+        url: "https://www.bridgman.org/DocumentCenter/View/2919/Summer-Concerts"
+      },
+      {
+        id: "weko-jon-hayes-2026-09-06",
+        date: "2026-09-06",
+        time: "6:00 PM ET",
+        artist: "Jon Hayes (Duo)",
+        venue: "Weko Beach Summer Concerts",
+        city: "Bridgman",
+        location: "Weko Beach, Bridgman, MI",
+        genre: "Acoustic",
+        description: "Free Sunday-evening summer concert at Weko Beach — season closer with the Jon Hayes duo.",
+        source: "Bridgman Weko Beach Summer Concerts 2026 poster",
+        url: "https://www.bridgman.org/DocumentCenter/View/2919/Summer-Concerts"
+      }
+    ];
+
     const lemonCreekMusicEvents = [
       {
         id: "lemoncreek-dave-johnson-2026-07-10",
@@ -4358,7 +4804,12 @@
       ...buchananCommonMusicEvents,
       ...riverSaintJoeMusicEvents,
       ...fourWindsMusicEvents,
-      ...newBuffaloMusicEvents
+      ...newBuffaloMusicEvents,
+      ...journeymanMusicEvents,
+      ...boxFactoryMusicEvents,
+      ...domaineBerrienMusicEvents,
+      ...filkinsMusicEvents,
+      ...wekoBeachMusicEvents
     ];
 
     const state = {
