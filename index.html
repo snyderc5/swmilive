@@ -1260,6 +1260,21 @@
         note: "2026 Saturday & Sunday Vineyard Lounge live-music lineup was extracted from Tabor Hill's current live music PDF."
       },
       {
+        name: "Free Run Cellars",
+        status: "Loaded",
+        note: "Live Music Sundays and ticketed evening shows were pulled from Free Run Cellars' Outlook 365 iCal feed."
+      },
+      {
+        name: "St. Joe Brown Bag Concert Series",
+        status: "Loaded",
+        note: "Free Wednesday-noon concerts at the John E.N. Howard Bandshell were added from the St. Joseph Today 2026 season schedule."
+      },
+      {
+        name: "St. Joe Friday Night Concert Series",
+        status: "Loaded",
+        note: "Free Friday-evening concerts at the John E.N. Howard Bandshell were added from the St. Joseph Today 2026 season schedule."
+      },
+      {
         name: "St. Julian Union Pier",
         status: "Loaded",
         note: "St. Julian's Union Pier tasting room currently has no upcoming live music events posted on their events page."
@@ -1291,6 +1306,9 @@
       ["Filkins Vineyards", "https://filkinsvineyards.com/upcoming-events/"],
       ["Weko Beach Summer Concerts", "https://www.bridgman.org/DocumentCenter/View/2919/Summer-Concerts"],
       ["Tabor Hill Winery", "https://taborhill.com/assets/livemusic.pdf"],
+      ["Free Run Cellars", "https://freeruncellars.com/pages/events-calendar"],
+      ["St. Joe Brown Bag Concert Series", "https://www.stjoetoday.com/brownbagconcerts"],
+      ["St. Joe Friday Night Concert Series", "https://www.stjoetoday.com/fridaynightconcerts"],
       ["St. Julian Union Pier", "https://www.stjulian.com/events/l/union-pier/t/live-music"]
     ];
 
@@ -4153,6 +4171,366 @@
       }
     ];
 
+    const freeRunMusicEvents = [
+      {
+        id: "freerun-chris-burch-duo-2026-07-19",
+        date: "2026-07-19",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Chris Burch Duo",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Rock",
+        description: "Live Music Sundays at Free Run Cellars with the Chris Burch Duo.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      },
+      {
+        id: "freerun-lesoulful-rock-2026-07-26",
+        date: "2026-07-26",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "LeSoulful Rock",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Funk / Soul",
+        description: "Live Music Sundays at Free Run Cellars with LeSoulful Rock — soul, R&B, and rock covers.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      },
+      {
+        id: "freerun-joe-sue-2026-08-02",
+        date: "2026-08-02",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Joe & Sue",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Live Music Sundays at Free Run Cellars with acoustic duo Joe & Sue.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      },
+      {
+        id: "freerun-john-hayes-2026-08-09",
+        date: "2026-08-09",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "John Hayes",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Live Music Sundays at Free Run Cellars with singer-guitarist John Hayes.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      },
+      {
+        id: "freerun-lasoulful-rock-2026-08-16",
+        date: "2026-08-16",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "LaSoulful Rock",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Funk / Soul",
+        description: "Live Music Sundays at Free Run Cellars with LaSoulful Rock — soul, R&B, and rock covers.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      },
+      {
+        id: "freerun-don-field-2026-08-23",
+        date: "2026-08-23",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Don Field",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Live Music Sundays at Free Run Cellars with singer-guitarist Don Field.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      },
+      {
+        id: "freerun-abbie-thomas-trio-2026-09-03",
+        date: "2026-09-03",
+        time: "6:00 PM-8:00 PM ET",
+        artist: "Abbie Thomas Trio",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Rock",
+        description: "Ticketed evening concert at Free Run Cellars with the Abbie Thomas Trio.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      },
+      {
+        id: "freerun-lasoulful-rock-2026-09-06",
+        date: "2026-09-06",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "LaSoulful Rock",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Funk / Soul",
+        description: "Live Music Sundays at Free Run Cellars with LaSoulful Rock.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      },
+      {
+        id: "freerun-john-hayes-2026-09-20",
+        date: "2026-09-20",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "John Hayes",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Live Music Sundays at Free Run Cellars with singer-guitarist John Hayes.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      },
+      {
+        id: "freerun-kyle-hurd-2026-10-04",
+        date: "2026-10-04",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Kyle Hurd",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Live Music Sundays at Free Run Cellars with Kyle Hurd.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      },
+      {
+        id: "freerun-don-field-2026-10-18",
+        date: "2026-10-18",
+        time: "3:00 PM-5:00 PM ET",
+        artist: "Don Field",
+        venue: "Free Run Cellars",
+        city: "Berrien Springs",
+        location: "Free Run Cellars, 10062 Burgoyne Rd, Berrien Springs, MI",
+        genre: "Acoustic",
+        description: "Live Music Sundays at Free Run Cellars with singer-guitarist Don Field.",
+        source: "Free Run Cellars events calendar (Outlook iCal)",
+        url: "https://freeruncellars.com/pages/events-calendar"
+      }
+    ];
+
+    const stJoeBrownBagMusicEvents = [
+      {
+        id: "sjt-brown-bag-weko-boys-2026-07-15",
+        date: "2026-07-15",
+        time: "12:00 PM-1:00 PM ET",
+        artist: "The Weko Boys",
+        venue: "St. Joe Brown Bag Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Rock",
+        description: "Free noon concert at the John E.N. Howard Bandshell. Bring your lunch. The Weko Boys are a Southwest Michigan rock/Americana cover group.",
+        source: "St. Joseph Today Brown Bag Concert Series",
+        url: "https://www.stjoetoday.com/brownbagconcerts"
+      },
+      {
+        id: "sjt-brown-bag-diane-lisa-2026-07-22",
+        date: "2026-07-22",
+        time: "12:00 PM-1:00 PM ET",
+        artist: "Diane & Lisa",
+        venue: "St. Joe Brown Bag Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Acoustic",
+        description: "Free noon concert at the John E.N. Howard Bandshell with acoustic duo Diane & Lisa.",
+        source: "St. Joseph Today Brown Bag Concert Series",
+        url: "https://www.stjoetoday.com/brownbagconcerts"
+      },
+      {
+        id: "sjt-brown-bag-tim-velez-2026-07-29",
+        date: "2026-07-29",
+        time: "12:00 PM-1:00 PM ET",
+        artist: "Tim Velez",
+        venue: "St. Joe Brown Bag Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Acoustic",
+        description: "Free noon concert at the John E.N. Howard Bandshell with South Bend singer-songwriter Tim Velez.",
+        source: "St. Joseph Today Brown Bag Concert Series",
+        url: "https://www.stjoetoday.com/brownbagconcerts"
+      },
+      {
+        id: "sjt-brown-bag-mike-talbot-2026-08-05",
+        date: "2026-08-05",
+        time: "12:00 PM-1:00 PM ET",
+        artist: "Mike Talbot",
+        venue: "St. Joe Brown Bag Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Acoustic",
+        description: "Free noon concert at the John E.N. Howard Bandshell with Mike Talbot.",
+        source: "St. Joseph Today Brown Bag Concert Series",
+        url: "https://www.stjoetoday.com/brownbagconcerts"
+      },
+      {
+        id: "sjt-brown-bag-ellen-wallenfang-2026-08-12",
+        date: "2026-08-12",
+        time: "12:00 PM-1:00 PM ET",
+        artist: "Ellen Wallenfang",
+        venue: "St. Joe Brown Bag Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Acoustic",
+        description: "Free noon concert at the John E.N. Howard Bandshell with Ellen Wallenfang.",
+        source: "St. Joseph Today Brown Bag Concert Series",
+        url: "https://www.stjoetoday.com/brownbagconcerts"
+      },
+      {
+        id: "sjt-brown-bag-leonardo-2026-08-19",
+        date: "2026-08-19",
+        time: "12:00 PM-1:00 PM ET",
+        artist: "Leonardo",
+        venue: "St. Joe Brown Bag Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Acoustic",
+        description: "Free noon concert at the John E.N. Howard Bandshell with Leonardo.",
+        source: "St. Joseph Today Brown Bag Concert Series",
+        url: "https://www.stjoetoday.com/brownbagconcerts"
+      },
+      {
+        id: "sjt-brown-bag-jack-adams-2026-08-26",
+        date: "2026-08-26",
+        time: "12:00 PM-1:00 PM ET",
+        artist: "Jack Adams",
+        venue: "St. Joe Brown Bag Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Acoustic",
+        description: "Free noon concert at the John E.N. Howard Bandshell with Jack Adams.",
+        source: "St. Joseph Today Brown Bag Concert Series",
+        url: "https://www.stjoetoday.com/brownbagconcerts"
+      },
+      {
+        id: "sjt-brown-bag-richard-schwartz-2026-09-02",
+        date: "2026-09-02",
+        time: "12:00 PM-1:00 PM ET",
+        artist: "Richard Schwartz",
+        venue: "St. Joe Brown Bag Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Acoustic",
+        description: "Free noon concert at the John E.N. Howard Bandshell — season closer with Richard Schwartz.",
+        source: "St. Joseph Today Brown Bag Concert Series",
+        url: "https://www.stjoetoday.com/brownbagconcerts"
+      }
+    ];
+
+    const stJoeFridayNightMusicEvents = [
+      {
+        id: "sjt-friday-blue-shoes-2026-07-17",
+        date: "2026-07-17",
+        time: "7:00 PM-8:00 PM ET",
+        artist: "Blue Shoes",
+        venue: "St. Joe Friday Night Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Blues",
+        description: "Free Friday-evening concert overlooking the St. Joseph River with Blue Shoes.",
+        source: "St. Joseph Today Friday Night Concert Series",
+        url: "https://www.stjoetoday.com/fridaynightconcerts"
+      },
+      {
+        id: "sjt-friday-pt-cruisers-2026-07-24",
+        date: "2026-07-24",
+        time: "7:00 PM-8:00 PM ET",
+        artist: "PT and the Cruisers",
+        venue: "St. Joe Friday Night Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Rock",
+        description: "Free Friday-evening concert at the John E.N. Howard Bandshell with PT and the Cruisers.",
+        source: "St. Joseph Today Friday Night Concert Series",
+        url: "https://www.stjoetoday.com/fridaynightconcerts"
+      },
+      {
+        id: "sjt-friday-lake-effect-jazz-2026-07-31",
+        date: "2026-07-31",
+        time: "7:00 PM-8:00 PM ET",
+        artist: "Lake Effect Jazz Big Band",
+        venue: "St. Joe Friday Night Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Jazz",
+        description: "Free Friday-evening concert at the John E.N. Howard Bandshell with the Lake Effect Jazz Big Band.",
+        source: "St. Joseph Today Friday Night Concert Series",
+        url: "https://www.stjoetoday.com/fridaynightconcerts"
+      },
+      {
+        id: "sjt-friday-sankofa-2026-08-07",
+        date: "2026-08-07",
+        time: "7:00 PM-8:00 PM ET",
+        artist: "Sankofa",
+        venue: "St. Joe Friday Night Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "World",
+        description: "Free Friday-evening concert at the John E.N. Howard Bandshell with world/African music from Sankofa.",
+        source: "St. Joseph Today Friday Night Concert Series",
+        url: "https://www.stjoetoday.com/fridaynightconcerts"
+      },
+      {
+        id: "sjt-friday-municipal-jazz-2026-08-14",
+        date: "2026-08-14",
+        time: "7:00 PM-8:00 PM ET",
+        artist: "Municipal Jazz Band",
+        venue: "St. Joe Friday Night Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Jazz",
+        description: "Free Friday-evening concert at the John E.N. Howard Bandshell with the Municipal Jazz Band.",
+        source: "St. Joseph Today Friday Night Concert Series",
+        url: "https://www.stjoetoday.com/fridaynightconcerts"
+      },
+      {
+        id: "sjt-friday-backups-2026-08-21",
+        date: "2026-08-21",
+        time: "7:00 PM-8:00 PM ET",
+        artist: "The Backups",
+        venue: "St. Joe Friday Night Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Rock",
+        description: "Free Friday-evening concert at the John E.N. Howard Bandshell with The Backups.",
+        source: "St. Joseph Today Friday Night Concert Series",
+        url: "https://www.stjoetoday.com/fridaynightconcerts"
+      },
+      {
+        id: "sjt-friday-electric-cars-2026-08-28",
+        date: "2026-08-28",
+        time: "7:00 PM-8:00 PM ET",
+        artist: "The Electric Cars",
+        venue: "St. Joe Friday Night Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Rock",
+        description: "Free Friday-evening concert at the John E.N. Howard Bandshell with The Electric Cars.",
+        source: "St. Joseph Today Friday Night Concert Series",
+        url: "https://www.stjoetoday.com/fridaynightconcerts"
+      },
+      {
+        id: "sjt-friday-smso-string-quartet-2026-09-04",
+        date: "2026-09-04",
+        time: "7:00 PM-8:00 PM ET",
+        artist: "SMSO — The Iridescent Zeal String Quartet",
+        venue: "St. Joe Friday Night Concert Series",
+        city: "St. Joseph",
+        location: "John E.N. Howard Bandshell, St. Joseph, MI",
+        genre: "Classical",
+        description: "Free Friday-evening concert at the John E.N. Howard Bandshell — Southwest Michigan Symphony Orchestra presents The Iridescent Zeal String Quartet.",
+        source: "St. Joseph Today Friday Night Concert Series",
+        url: "https://www.stjoetoday.com/fridaynightconcerts"
+      }
+    ];
+
     const lemonCreekMusicEvents = [
       {
         id: "lemoncreek-dave-johnson-2026-07-10",
@@ -5139,7 +5517,10 @@
       ...domaineBerrienMusicEvents,
       ...filkinsMusicEvents,
       ...wekoBeachMusicEvents,
-      ...taborHillMusicEvents
+      ...taborHillMusicEvents,
+      ...freeRunMusicEvents,
+      ...stJoeBrownBagMusicEvents,
+      ...stJoeFridayNightMusicEvents
     ];
 
     const state = {
@@ -5242,7 +5623,8 @@
       if (text.includes("bluegrass") || text.includes("jamgrass")) return "Bluegrass";
       if (text.includes("folk") || text.includes("americana") || text.includes("roots") || text.includes("irish")) return "Folk / Americana";
       if (text.includes("funk") || text.includes("soul") || text.includes("r&b") || text.includes("reggae") || text.includes("hip-hop")) return "Funk / Soul";
-      if (text.includes("world") || text.includes("indian")) return "World";
+      if (text.includes("world") || text.includes("indian") || text.includes("sankofa") || text.includes("african")) return "World";
+      if (text.includes("classical") || text.includes("string quartet") || text.includes("symphony") || text.includes("orchestra") || text.includes("chamber")) return "Classical";
       if (text.includes("pop")) return "Pop";
       if (text.includes("rock") || text.includes("jam")) return "Rock";
       return "Rock";
