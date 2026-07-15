@@ -1256,8 +1256,8 @@
       },
       {
         name: "Tabor Hill Winery",
-        status: "Skipped",
-        note: "Tabor Hill's Live Music Sundays PDF on their site shows day-of-week alignments (Sunday, May 29; Sunday, July 3) that match a prior year, not 2026 — the PDF appears stale and was not imported."
+        status: "Loaded",
+        note: "2026 Saturday & Sunday Vineyard Lounge live-music lineup was extracted from Tabor Hill's current live music PDF."
       },
       {
         name: "St. Julian Union Pier",
@@ -1290,6 +1290,7 @@
       ["Domaine Berrien Cellars", "https://www.domaineberrien.com/events"],
       ["Filkins Vineyards", "https://filkinsvineyards.com/upcoming-events/"],
       ["Weko Beach Summer Concerts", "https://www.bridgman.org/DocumentCenter/View/2919/Summer-Concerts"],
+      ["Tabor Hill Winery", "https://taborhill.com/assets/livemusic.pdf"],
       ["St. Julian Union Pier", "https://www.stjulian.com/events/l/union-pier/t/live-music"]
     ];
 
@@ -3824,6 +3825,295 @@
       }
     ];
 
+    const taborHillMusicEvents = [
+      {
+        id: "taborhill-justin-staublin-2026-07-18",
+        date: "2026-07-18",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Justin Staublin Duo",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-nick-dekoff-2026-07-19",
+        date: "2026-07-19",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Nick Dekoff",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-pamela-rocha-2026-07-25",
+        date: "2026-07-25",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Pamela Rocha",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Jazz",
+        description: "Live music in the Tabor Hill Vineyard Lounge with Chicago-based jazz vocalist Pamela Rocha.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-frankly-good-music-2026-07-26",
+        date: "2026-07-26",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Frankly Good Music",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-jason-murphy-2026-08-01",
+        date: "2026-08-01",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Jason Murphy",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-preston-charity-2026-08-02",
+        date: "2026-08-02",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Preston & Charity",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Folk / Americana",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-murph-2026-08-08",
+        date: "2026-08-08",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Murph",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-daniel-cole-dailey-2026-08-09",
+        date: "2026-08-09",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Daniel Cole Dailey",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-daniel-cole-dailey-2026-08-15",
+        date: "2026-08-15",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Daniel Cole Dailey",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-eddie-andersen-2026-08-16",
+        date: "2026-08-16",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Eddie Andersen",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-mike-arnold-2026-08-22",
+        date: "2026-08-22",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Mike Arnold",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-brett-wisons-2026-08-23",
+        date: "2026-08-23",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Brett Wisons",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-ross-failla-2026-08-29",
+        date: "2026-08-29",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Ross Failla",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-drew-alkema-2026-08-30",
+        date: "2026-08-30",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Drew Alkema",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-sequoia-rose-2026-09-05",
+        date: "2026-09-05",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Sequoia Rose",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-shelby-lentz-2026-09-06",
+        date: "2026-09-06",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Shelby Lentz",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-paolo-apuli-2026-09-12",
+        date: "2026-09-12",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Paolo Apuli",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-daniel-cole-dailey-2026-09-13",
+        date: "2026-09-13",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Daniel Cole Dailey",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-dan-fester-2026-09-19",
+        date: "2026-09-19",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Dan Fester",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-kyle-hurd-2026-09-20",
+        date: "2026-09-20",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Kyle Hurd Duo",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-aaron-james-wright-2026-09-26",
+        date: "2026-09-26",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Aaron James Wright",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Acoustic",
+        description: "Live music in the Tabor Hill Vineyard Lounge.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      },
+      {
+        id: "taborhill-abbie-thomas-2026-09-27",
+        date: "2026-09-27",
+        time: "2:30 PM-5:30 PM ET",
+        artist: "Abbie Thomas",
+        venue: "Tabor Hill Winery",
+        city: "Buchanan",
+        location: "Tabor Hill Winery, 185 Mount Tabor Rd, Buchanan, MI",
+        genre: "Rock",
+        description: "Live music in the Tabor Hill Vineyard Lounge with Michigan singer-songwriter Abbie Thomas.",
+        source: "Tabor Hill 2026 Live Music PDF",
+        url: "https://taborhill.com/assets/livemusic.pdf"
+      }
+    ];
+
     const lemonCreekMusicEvents = [
       {
         id: "lemoncreek-dave-johnson-2026-07-10",
@@ -4809,7 +5099,8 @@
       ...boxFactoryMusicEvents,
       ...domaineBerrienMusicEvents,
       ...filkinsMusicEvents,
-      ...wekoBeachMusicEvents
+      ...wekoBeachMusicEvents,
+      ...taborHillMusicEvents
     ];
 
     const state = {
