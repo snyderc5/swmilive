@@ -1342,6 +1342,11 @@
         note: "Free Friday-evening concerts at the John E.N. Howard Bandshell were added from the St. Joseph Today 2026 season schedule."
       },
       {
+        name: "The Loading Dock",
+        status: "Loaded",
+        note: "Live music events were read from the event flyer images on The Loading Dock's website; comedy, design, and market events were skipped."
+      },
+      {
         name: "St. Julian Union Pier",
         status: "Loaded",
         note: "St. Julian's Union Pier tasting room currently has no upcoming live music events posted on their events page."
@@ -1376,6 +1381,7 @@
       ["Free Run Cellars", "https://freeruncellars.com/pages/events-calendar"],
       ["St. Joe Brown Bag Concert Series", "https://www.stjoetoday.com/brownbagconcerts"],
       ["St. Joe Friday Night Concert Series", "https://www.stjoetoday.com/fridaynightconcerts"],
+      ["The Loading Dock", "https://theloadingdock.events/"],
       ["St. Julian Union Pier", "https://www.stjulian.com/events/l/union-pier/t/live-music"]
     ];
 
@@ -4598,6 +4604,87 @@
       }
     ];
 
+    const loadingDockMusicEvents = [
+      {
+        id: "loadingdock-clarke-circle-2026-07-30",
+        date: "2026-07-30",
+        time: "7:00 PM-10:00 PM ET",
+        artist: "Clarke Circle",
+        venue: "The Loading Dock",
+        city: "Buchanan",
+        location: "The Loading Dock, 325 E Front St, Suite 118, Buchanan, MI",
+        genre: "Folk / Americana",
+        description: "Live music with Clarke Circle at The Loading Dock — Southwest Michigan's newest event venue in the historic Clark Equipment building.",
+        source: "The Loading Dock event flyer",
+        url: "https://theloadingdock.events/"
+      },
+      {
+        id: "loadingdock-heat-above-2026-08-01",
+        date: "2026-08-01",
+        time: "7:00 PM ET",
+        artist: "Heat Above (with New Troy)",
+        venue: "The Loading Dock",
+        city: "Buchanan",
+        location: "The Loading Dock, 325 E Front St, Suite 118, Buchanan, MI",
+        genre: "Rock",
+        description: "The Loading Dock presents a night of alternative rock with Heat Above and special guest New Troy. Pre-sale $5, door $8.",
+        source: "The Loading Dock event flyer",
+        url: "https://theloadingdock.events/"
+      },
+      {
+        id: "loadingdock-king-of-mars-2026-08-07",
+        date: "2026-08-07",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "The King of Mars",
+        venue: "The Loading Dock",
+        city: "Buchanan",
+        location: "The Loading Dock, 325 E Front St, Suite 118, Buchanan, MI",
+        genre: "Rock",
+        description: "The King of Mars live at The Loading Dock. Pre-sale $5, door $8.",
+        source: "The Loading Dock event flyer",
+        url: "https://theloadingdock.events/"
+      },
+      {
+        id: "loadingdock-jack-whittle-blues-2026-08-27",
+        date: "2026-08-27",
+        time: "7:00 PM-9:00 PM ET",
+        artist: "Jack Whittle Blues Trio",
+        venue: "The Loading Dock",
+        city: "Buchanan",
+        location: "The Loading Dock, 325 E Front St, Suite 118, Buchanan, MI",
+        genre: "Blues",
+        description: "Live music with the Jack Whittle Blues Trio at The Loading Dock.",
+        source: "The Loading Dock event flyer",
+        url: "https://theloadingdock.events/"
+      },
+      {
+        id: "loadingdock-now-then-band-2026-09-17",
+        date: "2026-09-17",
+        time: "7:00 PM-9:30 PM ET",
+        artist: "Now & Then Band",
+        venue: "The Loading Dock",
+        city: "Buchanan",
+        location: "The Loading Dock, 325 E Front St, Suite 118, Buchanan, MI",
+        genre: "Rock",
+        description: "Michiana's finest variety band Now & Then plays sing-along, dance-along classic rock and pop covers.",
+        source: "The Loading Dock event flyer",
+        url: "https://theloadingdock.events/"
+      },
+      {
+        id: "loadingdock-dylan-raymond-2026-10-15",
+        date: "2026-10-15",
+        time: "7:00 PM ET",
+        artist: "Dylan Raymond",
+        venue: "The Loading Dock",
+        city: "Buchanan",
+        location: "The Loading Dock, 325 E Front St, Suite 118, Buchanan, MI",
+        genre: "Country",
+        description: "The Loading Dock presents Dylan Raymond — an evening of live acoustic country. Pre-sale $5, door $8.",
+        source: "The Loading Dock event flyer",
+        url: "https://theloadingdock.events/"
+      }
+    ];
+
     const lemonCreekMusicEvents = [
       {
         id: "lemoncreek-dave-johnson-2026-07-10",
@@ -5587,7 +5674,8 @@
       ...taborHillMusicEvents,
       ...freeRunMusicEvents,
       ...stJoeBrownBagMusicEvents,
-      ...stJoeFridayNightMusicEvents
+      ...stJoeFridayNightMusicEvents,
+      ...loadingDockMusicEvents
     ];
 
     const state = {
