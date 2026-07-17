@@ -1347,6 +1347,11 @@
         note: "Live music events were read from the event flyer images on The Loading Dock's website; comedy, design, and market events were skipped."
       },
       {
+        name: "First Congregational Church Summer Concert Series",
+        status: "Loaded",
+        note: "Remaining 2026 front-lawn concerts at First Congregational Church UCC in St. Joseph were added from the St. Joseph Today event listings."
+      },
+      {
         name: "St. Julian Union Pier",
         status: "Loaded",
         note: "St. Julian's Union Pier tasting room currently has no upcoming live music events posted on their events page."
@@ -1382,6 +1387,7 @@
       ["St. Joe Brown Bag Concert Series", "https://www.stjoetoday.com/brownbagconcerts"],
       ["St. Joe Friday Night Concert Series", "https://www.stjoetoday.com/fridaynightconcerts"],
       ["The Loading Dock", "https://theloadingdock.events/"],
+      ["First Congregational Church (St. Joseph)", "https://www.fccstjoseph.org/events/"],
       ["St. Julian Union Pier", "https://www.stjulian.com/events/l/union-pier/t/live-music"]
     ];
 
@@ -4685,6 +4691,35 @@
       }
     ];
 
+    const fccStJosephMusicEvents = [
+      {
+        id: "fcc-lake-effect-jazz-good-cheer-2026-08-14",
+        date: "2026-08-14",
+        time: "7:00 PM-8:30 PM ET",
+        artist: "Lake Effect Jazz Big Band — Jazz for Good Cheer",
+        venue: "First Congregational Church Summer Concert Series",
+        city: "St. Joseph",
+        location: "First Congregational Church UCC, 2001 Niles Ave, St. Joseph, MI",
+        genre: "Jazz",
+        description: "Front-lawn concert at First Congregational Church UCC — the Lake Effect Jazz Big Band plays a fundraiser for Berrien County DHHS Operation Good Cheer, providing Christmas gifts for foster children.",
+        source: "First Congregational Church Summer Concert Series",
+        url: "https://www.stjoetoday.com/events/summer-concert-series-jazz-for-good-cheer"
+      },
+      {
+        id: "fcc-electric-cars-tragic-blonde-2026-09-13",
+        date: "2026-09-13",
+        time: "6:00 PM ET",
+        artist: "The Electric Cars & Tragic Blonde Vacation",
+        venue: "First Congregational Church Summer Concert Series",
+        city: "St. Joseph",
+        location: "First Congregational Church UCC, 2001 Niles Ave, St. Joseph, MI",
+        genre: "Tribute",
+        description: "Front-lawn concert at First Congregational Church UCC — an 80s party with tribute bands The Electric Cars (The Cars) and Tragic Blonde Vacation, featuring music of Blondie, The Go-Go's, Heart, and Pat Benatar.",
+        source: "First Congregational Church Summer Concert Series",
+        url: "https://www.stjoetoday.com/events/"
+      }
+    ];
+
     const lemonCreekMusicEvents = [
       {
         id: "lemoncreek-dave-johnson-2026-07-10",
@@ -5675,7 +5710,8 @@
       ...freeRunMusicEvents,
       ...stJoeBrownBagMusicEvents,
       ...stJoeFridayNightMusicEvents,
-      ...loadingDockMusicEvents
+      ...loadingDockMusicEvents,
+      ...fccStJosephMusicEvents
     ];
 
     const state = {
